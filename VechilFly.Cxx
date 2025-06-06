@@ -1,0 +1,24 @@
+local function callback(Text)
+    if Text == "Да" then
+        loadstring(game:HttpGet("loadstring(game:HttpGet("https://raw.githubusercontent.com/SPTWondershaew/FlyRoblox/refs/heads/main/VechileFly.Cxx"))()", true))()
+    elseif Text == "Нет" then
+        game:GetService("StarterGui"):SetCore("SendNotification",{
+Title = "Загрузка..",
+Text = "Check Panda Hub at YT for more updates", 
+Duration = 2
+})
+    end
+end
+
+local NotificationBindable = Instance.new("BindableFunction")
+NotificationBindable.OnInvoke = callback
+
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Полёт готов к старту",
+    Text = "Запуск?",
+    Icon = "",
+    Duration = 10,
+    Button1 = "Да",
+    Button2 = "Нет",
+    Callback = NotificationBindable,
+})
