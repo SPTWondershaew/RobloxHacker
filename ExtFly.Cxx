@@ -5,7 +5,7 @@ local down = Instance.new("TextButton")
 local onof = Instance.new("TextButton")
 local TextLabel = Instance.new("TextLabel")
 local plus = Instance.new("TextButton")
-local speed_label = Instance.new("TextLabel") -- Переименовал speed на speed_label, чтобы не конфликтовать с локальной speed
+local speed = Instance.new("TextLabel")
 local mine = Instance.new("TextButton")
 local closebutton = Instance.new("TextButton")
 local mini = Instance.new("TextButton")
@@ -17,407 +17,458 @@ main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 main.ResetOnSpawn = false
 
 Frame.Parent = main
-Frame.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-Frame.BorderColor3 = Color3.fromRGB(255, 0, 0)
+Frame.BackgroundColor3 = Color3.fromRGB(163, 255, 137)
+Frame.BorderColor3 = Color3.fromRGB(103, 221, 213)
 Frame.Position = UDim2.new(0.100320168, 0, 0.379746825, 0)
 Frame.Size = UDim2.new(0, 190, 0, 57)
 
-up.Name = "up"
+up.Name = "Вверх"
 up.Parent = Frame
-up.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
+up.BackgroundColor3 = Color3.fromRGB(79, 255, 152)
 up.Size = UDim2.new(0, 44, 0, 28)
 up.Font = Enum.Font.SourceSans
-up.Text = "Вверх"
+up.Text = "UP"
 up.TextColor3 = Color3.fromRGB(0, 0, 0)
-up.TextSize = 15.000
+up.TextSize = 14.000
 
-down.Name = "down"
+down.Name = "Вниз"
 down.Parent = Frame
-down.BackgroundColor3 = Color3.fromRGB(255, 242, 37)
+down.BackgroundColor3 = Color3.fromRGB(215, 255, 121)
 down.Position = UDim2.new(0, 0, 0.491228074, 0)
 down.Size = UDim2.new(0, 44, 0, 28)
 down.Font = Enum.Font.SourceSans
-down.Text = "Вниз"
+down.Text = "DOWN"
 down.TextColor3 = Color3.fromRGB(0, 0, 0)
-down.TextSize = 15.000
+down.TextSize = 14.000
 
 onof.Name = "onof"
 onof.Parent = Frame
-onof.BackgroundColor3 = Color3.fromRGB(219, 0, 255)
+onof.BackgroundColor3 = Color3.fromRGB(255, 249, 74)
 onof.Position = UDim2.new(0.702823281, 0, 0.491228074, 0)
 onof.Size = UDim2.new(0, 56, 0, 28)
 onof.Font = Enum.Font.SourceSans
-onof.Text = "Взлететь"
+onof.Text = "fly"
 onof.TextColor3 = Color3.fromRGB(0, 0, 0)
-onof.TextSize = 16.000
+onof.TextSize = 14.000
 
 TextLabel.Parent = Frame
 TextLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
 TextLabel.Position = UDim2.new(0.469327301, 0, 0, 0)
 TextLabel.Size = UDim2.new(0, 100, 0, 28)
 TextLabel.Font = Enum.Font.SourceSans
-TextLabel.Text = "5 минут полёт нормальный"
+TextLabel.Text = "FLY GUI V3"
 TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.TextScaled = true
-TextLabel.TextSize = 16.000
+TextLabel.TextSize = 14.000
 TextLabel.TextWrapped = true
 
-plus.Name = "up"
+plus.Name = "Добавить скорость"
 plus.Parent = Frame
-plus.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+plus.BackgroundColor3 = Color3.fromRGB(133, 145, 255)
 plus.Position = UDim2.new(0.231578946, 0, 0, 0)
 plus.Size = UDim2.new(0, 45, 0, 28)
 plus.Font = Enum.Font.SourceSans
-plus.Text = "Добавить"
+plus.Text = "+"
 plus.TextColor3 = Color3.fromRGB(0, 0, 0)
 plus.TextScaled = true
-plus.TextSize = 15.000
+plus.TextSize = 14.000
 plus.TextWrapped = true
 
-speed_label.Name = "speed" -- Используем переименованную переменную
-speed_label.Parent = Frame
-speed_label.BackgroundColor3 = Color3.fromRGB(102, 254, 255)
-speed_label.Position = UDim2.new(0.468421042, 0, 0.491228074, 0)
-speed_label.Size = UDim2.new(0, 44, 0, 28)
-speed_label.Font = Enum.Font.SourceSans
-speed_label.Text = "1"
-speed_label.TextColor3 = Color3.fromRGB(0, 0, 0)
-speed_label.TextScaled = true
-speed_label.TextSize = 15.000
-speed_label.TextWrapped = true
+speed.Name = "speed"
+speed.Parent = Frame
+speed.BackgroundColor3 = Color3.fromRGB(255, 85, 0)
+speed.Position = UDim2.new(0.468421042, 0, 0.491228074, 0)
+speed.Size = UDim2.new(0, 44, 0, 28)
+speed.Font = Enum.Font.SourceSans
+speed.Text = "1"
+speed.TextColor3 = Color3.fromRGB(0, 0, 0)
+speed.TextScaled = true
+speed.TextSize = 14.000
+speed.TextWrapped = true
 
 mine.Name = "mine"
 mine.Parent = Frame
-mine.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+mine.BackgroundColor3 = Color3.fromRGB(123, 255, 247)
 mine.Position = UDim2.new(0.231578946, 0, 0.491228074, 0)
 mine.Size = UDim2.new(0, 45, 0, 29)
 mine.Font = Enum.Font.SourceSans
-mine.Text = "Уменьшить"
+mine.Text = "-"
 mine.TextColor3 = Color3.fromRGB(0, 0, 0)
 mine.TextScaled = true
-mine.TextSize = 15.000
+mine.TextSize = 14.000
 mine.TextWrapped = true
 
 closebutton.Name = "Close"
-closebutton.Parent = Frame -- Parent Frame, а не main.Frame
-closebutton.BackgroundColor3 = Color3.fromRGB(225, 0, 0)
-closebutton.Font = Enum.Font.SourceSans -- Enum.Font.SourceSans вместо "SourceSans"
+closebutton.Parent = main.Frame
+closebutton.BackgroundColor3 = Color3.fromRGB(225, 25, 0)
+closebutton.Font = "SourceSans"
 closebutton.Size = UDim2.new(0, 45, 0, 28)
 closebutton.Text = "X"
 closebutton.TextSize = 30
 closebutton.Position =  UDim2.new(0, 0, -1, 27)
 
 mini.Name = "minimize"
-mini.Parent = Frame -- Parent Frame, а не main.Frame
-mini.BackgroundColor3 = Color3.fromRGB(255, 168, 67)
-mini.Font = Enum.Font.SourceSans -- Enum.Font.SourceSans
+mini.Parent = main.Frame
+mini.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
+mini.Font = "SourceSans"
 mini.Size = UDim2.new(0, 45, 0, 28)
-mini.Text = "Скрыть"
-mini.TextSize = 15.000
+mini.Text = "-"
+mini.TextSize = 40
 mini.Position = UDim2.new(0, 44, -1, 27)
 
 mini2.Name = "minimize2"
-mini2.Parent = Frame -- Parent Frame, а не main.Frame
-mini2.BackgroundColor3 = Color3.fromRGB(255, 168, 67)
-mini2.Font = Enum.Font.SourceSans -- Enum.Font.SourceSans
+mini2.Parent = main.Frame
+mini2.BackgroundColor3 = Color3.fromRGB(192, 150, 230)
+mini2.Font = "SourceSans"
 mini2.Size = UDim2.new(0, 45, 0, 28)
-mini2.Text = "Открыть"
-mini2.TextSize = 15.000
+mini2.Text = "+"
+mini2.TextSize = 40
 mini2.Position = UDim2.new(0, 44, -1, 57)
 mini2.Visible = false
 
-local current_speed = 1 -- Переименовал speeds на current_speed
-local is_flying = false -- Переименовал nowe на is_flying для ясности
-local is_moving_up = false
-local is_moving_down = false
-local fly_thread = nil -- Для управления основным циклом полета
+speeds = 1
 
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local StarterGui = game:GetService("StarterGui")
+local speaker = game:GetService("Players").LocalPlayer
 
-local LocalPlayer = Players.LocalPlayer
+local chr = game.Players.LocalPlayer.Character
+local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
 
-StarterGui:SetCore("SendNotification", { 
- Title = "Привет) Разработчик шайтан машины: ";
- Text = "Kill666you_0 - Im_DrHacker (telegram)";
- Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"; -- Запятая здесь
-    Duration = 5 -- Исправлено: теперь это часть таблицы
-})
+nowe = false
 
-Frame.Active = true
+game:GetService("StarterGui"):SetCore("SendNotification", { 
+	Title = "FLY GUI V3";
+	Text = "BY XNEO";
+	Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
+Duration = 5;
+
+Frame.Active = true -- main = gui
 Frame.Draggable = true
 
--- Функция для включения/выключения всех состояний Humanoid
-local function set_humanoid_states(humanoid, enabled)
-    local states = {
-        Enum.HumanoidStateType.Climbing, Enum.HumanoidStateType.FallingDown, Enum.HumanoidStateType.Flying,
-        Enum.HumanoidStateType.Freefall, Enum.HumanoidStateType.GettingUp, Enum.HumanoidStateType.Jumping,
-        Enum.HumanoidStateType.Landed, Enum.HumanoidStateType.Physics, Enum.HumanoidStateType.PlatformStanding,
-        Enum.HumanoidStateType.Ragdoll, Enum.HumanoidStateType.Running, Enum.HumanoidStateType.RunningNoPhysics,
-        Enum.HumanoidStateType.Seated, Enum.HumanoidStateType.StrafingNoPhysics, Enum.HumanoidStateType.Swimming
-    }
-    for _, state in ipairs(states) do
-        humanoid:SetStateEnabled(state, enabled)
-    end
-end
+onof.MouseButton1Down:connect(function()
 
--- Функция для основного цикла полета
-local function start_fly_loop(character, humanoid, target_part)
-    local bg = Instance.new("BodyGyro")
-    bg.P = 9e4
-    bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
-    bg.cframe = target_part.CFrame
-    bg.Parent = target_part
+	if nowe == true then
+		nowe = false
 
-    local bv = Instance.new("BodyVelocity")
-    bv.velocity = Vector3.new(0,0.1,0)
-    bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-    bv.Parent = target_part
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,true)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
+		speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
+	else 
+		nowe = true
 
-    humanoid.PlatformStand = true
-    character.Animate.Disabled = true -- Отключение анимаций здесь
 
-    local max_speed_val = 50 * current_speed -- Скорость полета зависит от current_speed
-    local current_fly_speed = 0
-    local ctrl = {f = 0, b = 0, l = 0, r = 0}
-    local lastctrl = {f = 0, b = 0, l = 0, r = 0}
 
-    -- Обновляем ctrl на основе пользовательского ввода
-    local function on_input_changed(inputObject, gameProcessedEvent)
-        if gameProcessedEvent then return end
-        if inputObject.UserInputType == Enum.UserInputType.Keyboard then
-            local key = inputObject.KeyCode
-            if key == Enum.KeyCode.W then ctrl.f = (inputObject.InputState == Enum.InputState.Begin and 1) or 0 end
-            if key == Enum.KeyCode.S then ctrl.b = (inputObject.InputState == Enum.InputState.Begin and -1) or 0 end
-            if key == Enum.KeyCode.A then ctrl.l = (inputObject.InputState == Enum.InputState.Begin and -1) or 0 end
-            if key == Enum.KeyCode.D then ctrl.r = (inputObject.InputState == Enum.InputState.Begin and 1) or 0 end
-        end
-    end
+		for i = 1, speeds do
+			spawn(function()
 
-    local input_conn = game:GetService("UserInputService").InputChanged:Connect(on_input_changed)
-    local input_began_conn = game:GetService("UserInputService").InputBegan:Connect(on_input_changed)
-    local input_ended_conn = game:GetService("UserInputService").InputEnded:Connect(on_input_changed)
+				local hb = game:GetService("RunService").Heartbeat	
 
-    while is_flying and character.Parent and humanoid.Health > 0 do -- Условия выхода из цикла
-        RunService.RenderStepped:Wait()
 
-        if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
-            current_fly_speed = current_fly_speed + .5 + (current_fly_speed / max_speed_val)
-            if current_fly_speed > max_speed_val then
-                current_fly_speed = max_speed_val
-            end
-        elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and current_fly_speed ~= 0 then
-            current_fly_speed = current_fly_speed - 1
-            if current_fly_speed < 0 then
-                current_fly_speed = 0
-            end
-        end
+				tpwalking = true
+				local chr = game.Players.LocalPlayer.Character
+				local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+				while tpwalking and hb:Wait() and chr and hum and hum.Parent do
+					if hum.MoveDirection.Magnitude > 0 then
+						chr:TranslateBy(hum.MoveDirection)
+					end
+				end
 
-        local current_cframe = game.Workspace.CurrentCamera.CoordinateFramelocal target_velocity
-        if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
-            target_velocity = ((current_cframe.lookVector * (ctrl.f + ctrl.b)) + ((current_cframe * CFrame.new(ctrl.l + ctrl.r, (ctrl.f + ctrl.b) * .2, 0)).p - current_cframe.p)) * current_fly_speed
-            lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r}
-        elseif (lastctrl.l + lastctrl.r) ~= 0 or (lastctrl.f + lastctrl.b) ~= 0 and current_fly_speed ~= 0 then
-             target_velocity = ((current_cframe.lookVector * (lastctrl.f+lastctrl.b)) + ((current_cframe * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - current_cframe.p))*current_fly_speed
-        else
-            target_velocity = Vector3.new(0,0,0)
-        end
-        
-        bv.velocity = target_velocity
+			end)
+		end
+		game.Players.LocalPlayer.Character.Animate.Disabled = true
+		local Char = game.Players.LocalPlayer.Character
+		local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
 
-        bg.cframe = current_cframe * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*current_fly_speed/max_speed_val),0,0)
-    end
+		for i,v in next, Hum:GetPlayingAnimationTracks() do
+			v:AdjustSpeed(0)
+		end
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,false)
+		speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,false)
+		speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+	end
 
-    -- Очистка после выхода из цикла полета
-    input_conn:Disconnect()
-    input_began_conn:Disconnect()
-    input_ended_conn:Disconnect()
 
-    bg:Destroy()
-    bv:Destroy()
-    humanoid.PlatformStand = false
-    character.Animate.Disabled = false
 
-    set_humanoid_states(humanoid, true) -- Включить все состояния обратно
-    humanoid:ChangeState(Enum.HumanoidStateType.Running) -- Вернуть обычное состояние
 
-    if fly_thread then
-        fly_thread = nil
-    end
-end
+	if game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R6 then
 
-onof.MouseButton1Down:Connect(function()
-    local character = LocalPlayer.Character
-    local humanoid = character and character:FindFirstChildWhichIsA("Humanoid")
 
-    if not character or not humanoid then return end
 
-    if is_flying then -- Если уже летим, выключаем
-        is_flying = false
-        onof.Text = "Взлететь"
-    else -- Если не летим, включаем
-        is_flying = true
-        onof.Text = "Приземлиться"
-        set_humanoid_states(humanoid, false) -- Отключить все состояния
-        humanoid:ChangeState(Enum.HumanoidStateType.Swimming) -- Или другое подходящее состояние для "полета"
+		local plr = game.Players.LocalPlayer
+		local torso = plr.Character.Torso
+		local flying = true
+		local deb = true
+		local ctrl = {f = 0, b = 0, l = 0, r = 0}
+		local lastctrl = {f = 0, b = 0, l = 0, r = 0}
+		local maxspeed = 50
+		local speed = 0
 
-        local target_part = (humanoid.RigType == Enum.HumanoidRigType.R6 and character:FindFirstChild("Torso")) or
-                            (humanoid.RigType == Enum.HumanoidRigType.R15 and character:FindFirstChild("UpperTorso"))
 
-        if target_part then
-            -- Запускаем основной цикл полета в новом потоке
-            fly_thread = coroutine.wrap(function()
-                start_fly_loop(character, humanoid, target_part)
-            end)()
-        end
-    end
+		local bg = Instance.new("BodyGyro", torso)
+		bg.P = 9e4
+		bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+		bg.cframe = torso.CFrame
+		local bv = Instance.new("BodyVelocity", torso)
+		bv.velocity = Vector3.new(0,0.1,0)
+		bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+		if nowe == true then
+			plr.Character.Humanoid.PlatformStand = true
+		end
+		while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+			game:GetService("RunService").RenderStepped:Wait()
+
+			if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
+				speed = speed+.5+(speed/maxspeed)
+				if speed > maxspeed then
+					speed = maxspeed
+				end
+			elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
+				speed = speed-1
+				if speed < 0 then
+					speed = 0
+				end
+			end
+			if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
+				bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
+				lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r}
+			elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
+				bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
+			else
+				bv.velocity = Vector3.new(0,0,0)
+			end
+			--	game.Players.LocalPlayer.Character.Animate.Disabled = true
+			bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0)
+		end
+		ctrl = {f = 0, b = 0, l = 0, r = 0}
+		lastctrl = {f = 0, b = 0, l = 0, r = 0}
+		speed = 0
+		bg:Destroy()
+		bv:Destroy()
+		plr.Character.Humanoid.PlatformStand = false
+		game.Players.LocalPlayer.Character.Animate.Disabled = false
+		tpwalking = false
+
+
+
+
+	else
+		local plr = game.Players.LocalPlayer
+		local UpperTorso = plr.Character.UpperTorso
+		local flying = true
+		local deb = true
+		local ctrl = {f = 0, b = 0, l = 0, r = 0}
+		local lastctrl = {f = 0, b = 0, l = 0, r = 0}
+		local maxspeed = 50
+		local speed = 0
+
+
+		local bg = Instance.new("BodyGyro", UpperTorso)
+		bg.P = 9e4
+		bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+		bg.cframe = UpperTorso.CFrame
+		local bv = Instance.new("BodyVelocity", UpperTorso)
+		bv.velocity = Vector3.new(0,0.1,0)
+		bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+		if nowe == true then
+			plr.Character.Humanoid.PlatformStand = true
+		end
+		while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+			wait()
+
+			if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
+				speed = speed+.5+(speed/maxspeed)
+				if speed > maxspeed then
+					speed = maxspeed
+				end
+			elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
+				speed = speed-1
+				if speed < 0 then
+					speed = 0
+				end
+			end
+			if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
+				bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
+				lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r}
+			elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
+				bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
+			else
+				bv.velocity = Vector3.new(0,0,0)
+			end
+
+			bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0)
+		end
+		ctrl = {f = 0, b = 0, l = 0, r = 0}
+		lastctrl = {f = 0, b = 0, l = 0, r = 0}
+		speed = 0
+		bg:Destroy()
+		bv:Destroy()
+		plr.Character.Humanoid.PlatformStand = false
+		game.Players.LocalPlayer.Character.Animate.Disabled = false
+		tpwalking = false
+
+
+
+	end
+
+
+
+
+
 end)
 
-local up_move_conn = nil
-local down_move_conn = nil
+local tis
 
--- Исправленная логика для кнопок вверх/вниз
-up.MouseButton1Down:Connect(function()
-    is_moving_up = true
-    if up_move_conn == nil then
-        up_move_conn = RunService.Stepped:Connect(function()
-            if is_moving_up and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 1, 0)
-            else
-                up_move_conn:Disconnect()
-                up_move_conn = nil
-            end
-        end)
-    end
+up.MouseButton1Down:connect(function()
+	tis = up.MouseEnter:connect(function()
+		while tis do
+			wait()
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,1,0)
+		end
+	end)
 end)
 
-up.MouseButton1Up:Connect(function() -- Отпускание кнопки
-    is_moving_up = false
+up.MouseLeave:connect(function()
+	if tis then
+		tis:Disconnect()
+		tis = nil
+	end
 end)
 
-up.MouseLeave:Connect(function() -- Уход мыши с кнопки (если кнопка не была отпущена)
-    is_moving_up = false
+local dis
+
+down.MouseButton1Down:connect(function()
+	dis = down.MouseEnter:connect(function()
+		while dis do
+			wait()
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-1,0)
+		end
+	end)
 end)
 
-
-down.MouseButton1Down:Connect(function()
-    is_moving_down = true
-    if down_move_conn == nil then
-        down_move_conn = RunService.Stepped:Connect(function()
-            if is_moving_down and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -1, 0)
-            else
-                down_move_conn:Disconnect()
-                down_move_conn = nil
-            end
-        end)
-    end
-end)
-
-down.MouseButton1Up:Connect(function() -- Отпускание кнопки
-    is_moving_down = false
-end)
-
-down.MouseLeave:Connect(function() -- Уход мыши с кнопки
-    is_moving_down = false
-end)LocalPlayer.CharacterAdded:Connect(function(char)
-    is_flying = false -- Сбрасываем статус полета при смерти/респавне
-    if fly_thread then
-        coroutine.yield(fly_thread) -- Попытка остановить предыдущий поток (не всегда надежно)
-        fly_thread = nil
-    end
-    -- Кнопка "Взлететь" должна быть активна
-    onof.Text = "Взлететь"
-    -- Эти строки в CharacterAdded уже не так критичны, т.к. fly_loop их сбросит
-    -- wait(0.7) -- лучше использовать task.wait()
-    -- char:FindFirstChildOfClass("Humanoid").PlatformStand = false
-    -- char:FindFirstChild("Animate").Disabled = false
+down.MouseLeave:connect(function()
+	if dis then
+		dis:Disconnect()
+		dis = nil
+	end
 end)
 
 
-plus.MouseButton1Down:Connect(function()
-    current_speed = current_speed + 1
-    speed_label.Text = tostring(current_speed) -- Обновляем текст лейбла
+game:GetService("Players").LocalPlayer.CharacterAdded:Connect(function(char)
+	wait(0.7)
+	game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+	game.Players.LocalPlayer.Character.Animate.Disabled = false
 
-    if is_flying and fly_thread then -- Если летим и есть активный поток полета
-        -- Перезапускаем полет, чтобы применить новую скорость
-        is_flying = false -- Останавливаем текущий полет
-        -- Дожидаемся завершения старого потока или принудительно останавливаем (если это возможно через эксплойт)
-        -- Затем снова включаем
-        task.wait(0.1) -- Небольшая пауза для завершения старого потока
-        is_flying = true
-        local character = LocalPlayer.Character
-        local humanoid = character and character:FindFirstChildWhichIsA("Humanoid")
-        local target_part = (humanoid.RigType == Enum.HumanoidRigType.R6 and character:FindFirstChild("Torso")) or
-                            (humanoid.RigType == Enum.HumanoidRigType.R15 and character:FindFirstChild("UpperTorso"))
-        if target_part then
-            fly_thread = coroutine.wrap(function()
-                start_fly_loop(character, humanoid, target_part)
-            end)()
-        end
-    end
 end)
 
-mine.MouseButton1Down:Connect(function()
-    if current_speed == 1 then
-        speed_label.Text = 'cannot be less than 1'
-        task.wait(1) -- Используем task.wait()
-        speed_label.Text = tostring(current_speed)
-    else
-        current_speed = current_speed - 1
-        speed_label.Text = tostring(current_speed)
 
-        if is_flying and fly_thread then -- Если летим и есть активный поток полета
-            is_flying = false -- Останавливаем текущий полет
-            task.wait(0.1)
-            is_flying = true
-            local character = LocalPlayer.Character
-            local humanoid = character and character:FindFirstChildWhichIsA("Humanoid")
-            local target_part = (humanoid.RigType == Enum.HumanoidRigType.R6 and character:FindFirstChild("Torso")) or
-                                (humanoid.RigType == Enum.HumanoidRigType.R15 and character:FindFirstChild("UpperTorso"))
-            if target_part then
-                fly_thread = coroutine.wrap(function()
-                    start_fly_loop(character, humanoid, target_part)
-                end)()
-            end
-        end
-    end
+plus.MouseButton1Down:connect(function()
+	speeds = speeds + 1
+	speed.Text = speeds
+	if nowe == true then
+
+
+		tpwalking = false
+		for i = 1, speeds do
+			spawn(function()
+
+				local hb = game:GetService("RunService").Heartbeat	
+
+
+				tpwalking = true
+				local chr = game.Players.LocalPlayer.Character
+				local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+				while tpwalking and hb:Wait() and chr and hum and hum.Parent do
+					if hum.MoveDirection.Magnitude > 0 then
+						chr:TranslateBy(hum.MoveDirection)
+					end
+				end
+
+			end)
+		end
+	end
+end)
+mine.MouseButton1Down:connect(function()
+	if speeds == 1 then
+		speed.Text = 'cannot be less than 1'
+		wait(1)
+		speed.Text = speeds
+	else
+		speeds = speeds - 1
+		speed.Text = speeds
+		if nowe == true then
+			tpwalking = false
+			for i = 1, speeds do
+				spawn(function()
+
+					local hb = game:GetService("RunService").Heartbeat	
+
+
+					tpwalking = true
+					local chr = game.Players.LocalPlayer.Character
+					local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+					while tpwalking and hb:Wait() and chr and hum and hum.Parent do
+						if hum.MoveDirection.Magnitude > 0 then
+							chr:TranslateBy(hum.MoveDirection)
+						end
+					end
+
+				end)
+			end
+		end
+	end
 end)
 
 closebutton.MouseButton1Click:Connect(function()
-    if is_flying then -- Выключаем полет перед закрытием
-        is_flying = false
-        -- Дополнительно: можно подождать завершения fly_thread или принудительно его остановить
-    end
-    main:Destroy()
+	main:Destroy()
 end)
 
 mini.MouseButton1Click:Connect(function()
-    up.Visible = false
-    down.Visible = false
-    onof.Visible = false
-    plus.Visible = false
-    speed_label.Visible = false
-    mine.Visible = false
-    mini.Visible = false
-    mini2.Visible = true
-    Frame.BackgroundTransparency = 1
-    closebutton.Position =  UDim2.new(0, 0, 0, 0) -- Позиция относительно родителя Frame
-    closebutton.Size = UDim2.new(0, 45, 0, 28)
-    mini2.Position = UDim2.new(0, 44, 0, 0) -- Позиция относительно родителя Frame
+	up.Visible = false
+	down.Visible = false
+	onof.Visible = false
+	plus.Visible = false
+	speed.Visible = false
+	mine.Visible = false
+	mini.Visible = false
+	mini2.Visible = true
+	main.Frame.BackgroundTransparency = 1
+	closebutton.Position =  UDim2.new(0, 0, -1, 57)
 end)
 
 mini2.MouseButton1Click:Connect(function()
-    up.Visible = true
-    down.Visible = true
-    onof.Visible = true
-    plus.Visible = true
-    speed_label.Visible = true
-    mine.Visible = true
-    mini.Visible = true
-    mini2.Visible = false
-    Frame.BackgroundTransparency = 0
-    closebutton.Position =  UDim2.new(0, 0, 0, 0) -- Вернуть исходную позицию
-    mini.Position = UDim2.new(0, 44, 0, 0) -- Вернуть исходную позицию
+	up.Visible = true
+	down.Visible = true
+	onof.Visible = true
+	plus.Visible = true
+	speed.Visible = true
+	mine.Visible = true
+	mini.Visible = true
+	mini2.Visible = false
+	main.Frame.BackgroundTransparency = 0 
+	closebutton.Position =  UDim2.new(0, 0, -1, 27)
 end)
