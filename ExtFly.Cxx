@@ -24,7 +24,7 @@ Frame.Size = UDim2.new(0, 190, 0, 57)
 
 up.Name = "up"
 up.Parent = Frame
-up.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+up.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 up.Size = UDim2.new(0, 44, 0, 28)
 up.Font = Enum.Font.SourceSans
 up.Text = "Вверх"
@@ -64,7 +64,7 @@ TextLabel.TextWrapped = true
 
 plus.Name = "up"
 plus.Parent = Frame
-plus.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+plus.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 plus.Position = UDim2.new(0.231578946, 0, 0, 0)
 plus.Size = UDim2.new(0, 45, 0, 28)
 plus.Font = Enum.Font.SourceSans
@@ -472,4 +472,5 @@ mini2.MouseButton1Click:Connect(function()
 	main.Frame.BackgroundTransparency = 0 
 	closebutton.Position =  UDim2.new(0, 0, -1, 27)
 end)
+
 
