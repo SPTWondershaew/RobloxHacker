@@ -24,7 +24,7 @@ Frame.Size = UDim2.new(0, 190, 0, 57)
 
 up.Name = "up"
 up.Parent = Frame
-up.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
+up.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 up.Size = UDim2.new(0, 44, 0, 28)
 up.Font = Enum.Font.SourceSans
 up.Text = "Вверх"
@@ -49,7 +49,7 @@ onof.Size = UDim2.new(0, 56, 0, 28)
 onof.Font = Enum.Font.SourceSans
 onof.Text = "Лететь"
 onof.TextColor3 = Color3.fromRGB(0, 0, 0)
-onof.TextSize = 16.000
+onof.TextSize = 15.000
 
 TextLabel.Parent = Frame
 TextLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
@@ -59,7 +59,7 @@ TextLabel.Font = Enum.Font.SourceSans
 TextLabel.Text = "Полёт без границ"
 TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.TextScaled = true
-TextLabel.TextSize = 16.000
+TextLabel.TextSize = 15.000
 TextLabel.TextWrapped = true
 
 plus.Name = "up"
@@ -136,8 +136,8 @@ local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
 nowe = false
 
 game:GetService("StarterGui"):SetCore("SendNotification", { 
-	Title = "Привет) Создано:";
-	Text = "Kill666you_0 - Im_DrHacker";
+	Title = "Привет)";
+	Text = "Создано: SPT_Wondershaew";
 	Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
 Duration = 5;
 
