@@ -3,7 +3,7 @@ local function callback(Text)
         loadstring(game:HttpGet("https://raw.githubusercontent.com/SPTWondershaew/FlyRoblox/main/ExtFly.Cxx", true))()
     elseif Text == "Нет" then
         game:GetService("StarterGui"):SetCore("SendNotification",{
-Title = "Нам очень жаль!:(",
+Title = "Очень жаль!:(",
 Text = "Тун тун тун...", 
 Duration = 2
 })
@@ -23,3 +23,4 @@ game.StarterGui:SetCore("SendNotification", {
     Callback = NotificationBindable,
 
 })
+
