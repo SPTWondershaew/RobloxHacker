@@ -47,7 +47,7 @@ onof.BackgroundColor3 = Color3.fromRGB(219, 0, 255)
 onof.Position = UDim2.new(0.702823281, 0, 0.491228074, 0)
 onof.Size = UDim2.new(0, 56, 0, 28)
 onof.Font = Enum.Font.SourceSans
-onof.Text = "Лететь"
+onof.Text = "Взлететь"
 onof.TextColor3 = Color3.fromRGB(0, 0, 0)
 onof.TextSize = 15.000
 
@@ -56,7 +56,7 @@ TextLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
 TextLabel.Position = UDim2.new(0.469327301, 0, 0, 0)
 TextLabel.Size = UDim2.new(0, 100, 0, 28)
 TextLabel.Font = Enum.Font.SourceSans
-TextLabel.Text = "Полёт без границ"
+TextLabel.Text = "Шайтан машина"
 TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 15.000
@@ -64,7 +64,7 @@ TextLabel.TextWrapped = true
 
 plus.Name = "up"
 plus.Parent = Frame
-plus.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+plus.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 plus.Position = UDim2.new(0.231578946, 0, 0, 0)
 plus.Size = UDim2.new(0, 45, 0, 28)
 plus.Font = Enum.Font.SourceSans
@@ -472,3 +472,4 @@ mini2.MouseButton1Click:Connect(function()
 	main.Frame.BackgroundTransparency = 0 
 	closebutton.Position =  UDim2.new(0, 0, -1, 27)
 end)
+
