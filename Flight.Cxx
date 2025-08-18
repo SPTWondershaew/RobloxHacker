@@ -21,3 +21,5 @@ game.StarterGui:SetCore("SendNotification", {
     Button1 = "Да",
     Button2 = "Нет",
     Callback = NotificationBindable,
+
+})
