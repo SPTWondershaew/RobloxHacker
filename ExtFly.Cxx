@@ -47,7 +47,7 @@ onof.BackgroundColor3 = Color3.fromRGB(219, 0, 255)
 onof.Position = UDim2.new(0.702823281, 0, 0.491228074, 0)
 onof.Size = UDim2.new(0, 56, 0, 28)
 onof.Font = Enum.Font.SourceSans
-onof.Text = "Лететь"
+onof.Text = "Взлететь"
 onof.TextColor3 = Color3.fromRGB(0, 0, 0)
 onof.TextSize = 16.000
 
@@ -56,7 +56,7 @@ TextLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
 TextLabel.Position = UDim2.new(0.469327301, 0, 0, 0)
 TextLabel.Size = UDim2.new(0, 100, 0, 28)
 TextLabel.Font = Enum.Font.SourceSans
-TextLabel.Text = "Полёт без границ"
+TextLabel.Text = "5 минут полёт нормальный"
 TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 16.000
@@ -136,8 +136,8 @@ local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
 nowe = false
 
 game:GetService("StarterGui"):SetCore("SendNotification", { 
-	Title = "Привет) Создано:";
-	Text = "Kill666you_0 - Im_DrHacker";
+	Title = "Привет) Разработчик шайтан машины: ";
+	Text = "Kill666you_0 - Im_DrHacker (telegram)";
 	Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
 Duration = 5;
 
@@ -471,4 +471,5 @@ mini2.MouseButton1Click:Connect(function()
 	mini2.Visible = false
 	main.Frame.BackgroundTransparency = 0 
 	closebutton.Position =  UDim2.new(0, 0, -1, 27)
+
 end)
