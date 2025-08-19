@@ -9,7 +9,8 @@ game.StarterGui:SetCore("SendNotification", {
     Title = "Внимание!",
     Text = "В некоторых играх у машин есть точка контроля повёл вверх - машина наклоняется вверх пока вы не потяните вниз чтобы она летела прямо, у других летаешь как обычно ничего само не поворачивается",
     Icon = "",
-    Duration = 10,
+    Duration = 10
+
     elseif Text == "Нет" then
         game:GetService("StarterGui"):SetCore("SendNotification",{
 Title = "Очень жаль!:(",
