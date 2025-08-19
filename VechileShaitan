@@ -17,95 +17,97 @@ local UIStroke = Instance.new("UIStroke")
 -- ScreenGui properties
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ResetOnSpawn = false
-
 -- MainFrame properties
 MainFrame.Parent = ScreenGui
-MainFrame.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+MainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35) -- Темно-серый фон
 MainFrame.Position = UDim2.new(0.3, 0, 0.5, -100)
 MainFrame.Size = UDim2.new(0, 200, 0, 190)
 MainFrame.Active = true
 MainFrame.Draggable = true
 
--- UIStroke properties for MainFrame
+-- UIStroke properties for MainFrame (Тонкая светлая обводка)
 UIStroke.Parent = MainFrame
-UIStroke.Color = Color3.fromRGB(0, 0, 0)
+UIStroke.Color = Color3.fromRGB(60, 60, 60) -- Чуть светлее, чем фон, для эффекта глубины
 UIStroke.Thickness = 2
 
 -- Title properties
 Title.Parent = MainFrame
-Title.BackgroundTransparency = 1
+Title.BackgroundTransparency = 1 -- Прозрачный фон
 Title.Size = UDim2.new(1, 0, 0.2, 0)
 Title.Font = Enum.Font.GothamBold
 Title.Text = "Флай машины"
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextColor3 = Color3.fromRGB(255, 255, 255) -- Белый текст
 Title.TextScaled = true
 
--- InnerFrame properties
+-- InnerFrame properties (Фрейм с элементами управления)
 InnerFrame.Parent = MainFrame
-InnerFrame.BackgroundColor3 = Color3.fromRGB(203, 255, 82)
+InnerFrame.BackgroundColor3 = Color3.fromRGB(45, 45, 45) -- Чуть светлее основного фрейма, чтобы выделить
+InnerFrame.BackgroundTransparency = 0.1 -- Небольшая прозрачность для глубины
 InnerFrame.Size = UDim2.new(1, 0, 0.6, 0)
 InnerFrame.Position = UDim2.new(0, 0, 0.2, 0)
 
--- SpeedTextBox properties
+-- SpeedTextBox properties (Окно для отображения скорости)
 SpeedTextBox.Parent = InnerFrame
-SpeedTextBox.BackgroundColor3 = Color3.fromRGB(120, 234, 234)
+SpeedTextBox.BackgroundColor3 = Color3.fromRGB(65, 65, 65) -- Темно-серый фон для поля
 SpeedTextBox.Position = UDim2.new(0.5, -25, 0.1, 0)
 SpeedTextBox.Size = UDim2.new(0, 50, 0, 30)
 SpeedTextBox.Font = Enum.Font.Gotham
 SpeedTextBox.Text = "1"
-SpeedTextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+SpeedTextBox.TextColor3 = Color3.fromRGB(255, 255, 255) -- Белый текст
 SpeedTextBox.TextScaled = true
 SpeedTextBox.PlaceholderText = "Скорость"
 
--- DecreaseButton properties
+-- DecreaseButton properties (Кнопка уменьшения -)
 DecreaseButton.Parent = InnerFrame
-DecreaseButton.BackgroundColor3 = Color3.fromRGB(150, 0, 255)
+DecreaseButton.BackgroundColor3 = Color3.fromRGB(180, 50, 50) -- Мягкий красный (для отрицательного действия)
 DecreaseButton.Size = UDim2.new(0, 50, 0, 30)
 DecreaseButton.Position = UDim2.new(0.1, 0, 0.1, 0)
 DecreaseButton.Font = Enum.Font.Gotham
 DecreaseButton.Text = "-"
-DecreaseButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+DecreaseButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- Белый текст
 DecreaseButton.TextScaled = true
 
--- IncreaseButton properties
+-- IncreaseButton properties (Кнопка увеличения +)
 IncreaseButton.Parent = InnerFrame
-IncreaseButton.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+IncreaseButton.BackgroundColor3 = Color3.fromRGB(50, 180, 50) -- Мягкий зеленый (для положительного действия)
 IncreaseButton.Size = UDim2.new(0, 50, 0, 30)
 IncreaseButton.Position = UDim2.new(0.8, -30, 0.1, 0)
 IncreaseButton.Font = Enum.Font.Gotham
 IncreaseButton.Text = "+"
-IncreaseButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+IncreaseButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- Белый текст
 IncreaseButton.TextScaled = true
 
--- FlyButton properties
+-- FlyButton properties (Кнопка "Взлёт")
 FlyButton.Parent = InnerFrame
-FlyButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+FlyButton.BackgroundColor3 = Color3.fromRGB(40, 40, 150) -- Темно-синий (основное действие)
 FlyButton.Size = UDim2.new(0.8, 0, 0.2, 0)
 FlyButton.Position = UDim2.new(0.1, 0, 0.40, 0)
 FlyButton.Font = Enum.Font.GothamBold
 FlyButton.Text = "Взлёт"
-FlyButton.TextColor3 = Color3.fromRGB(0, 0, 255)
+FlyButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- Белый текст
 FlyButton.TextScaled = true
 
--- DestroyButton properties
+-- DestroyButton properties (Кнопка "Убрать")
 DestroyButton.Parent = InnerFrame
-DestroyButton.BackgroundColor3 = Color3.fromRGB(48, 244, 244)
+DestroyButton.BackgroundColor3 = Color3.fromRGB(150, 40, 40) -- Красный (для деструктивного действия)
 DestroyButton.Size = UDim2.new(0.8, 0, 0.2, 0)
 DestroyButton.Position = UDim2.new(0.1, 0, 0.65, 0)
 DestroyButton.Font = Enum.Font.GothamBold
 DestroyButton.Text = "Убрать"
-DestroyButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+DestroyButton.TextColor3 = Color3.fromRGB(255, 255, 255) -- Белый текст
 DestroyButton.TextScaled = true
 
--- UICorner properties
+-- UICorner properties (Закругленные углы)
 UICorner.CornerRadius = UDim.new(0.1, 0)
-UICorner.Parent = MainFrame
+UICorner.Parent = MainFrame -- Применится ко всему фрейму
 
--- UIGradient properties
+-- UIGradient properties (Градієнт для основного фрейма)
 UIGradient.Parent = MainFrame
 UIGradient.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(45, 45, 45)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(75, 75, 75))
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(30, 30, 30)), -- Начальный цвет (темнее)
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(50, 50, 50))  -- Конечный цвет (светлее)
+
+-- UIGradient.Rotation = 90 -- Для вертикального градиента
 }
 
 -- Button functionalities
