@@ -36,13 +36,13 @@ Title.Parent = MainFrame
 Title.BackgroundTransparency = 1
 Title.Size = UDim2.new(1, 0, 0.2, 0)
 Title.Font = Enum.Font.GothamBold
-Title.Text = "Машина-лёт"
-Title.TextColor3 = Color3.fromRGB(0, 0, 255)
+Title.Text = "Флай машины"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextScaled = true
 
 -- InnerFrame properties
 InnerFrame.Parent = MainFrame
-InnerFrame.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+InnerFrame.BackgroundColor3 = Color3.fromRGB(203, 255, 82)
 InnerFrame.Size = UDim2.new(1, 0, 0.6, 0)
 InnerFrame.Position = UDim2.new(0, 0, 0.2, 0)
 
@@ -53,7 +53,7 @@ SpeedTextBox.Position = UDim2.new(0.5, -25, 0.1, 0)
 SpeedTextBox.Size = UDim2.new(0, 50, 0, 30)
 SpeedTextBox.Font = Enum.Font.Gotham
 SpeedTextBox.Text = "1"
-SpeedTextBox.TextColor3 = Color3.fromRGB(255, 255, 0)
+SpeedTextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
 SpeedTextBox.TextScaled = true
 SpeedTextBox.PlaceholderText = "Скорость"
 
@@ -64,7 +64,7 @@ DecreaseButton.Size = UDim2.new(0, 50, 0, 30)
 DecreaseButton.Position = UDim2.new(0.1, 0, 0.1, 0)
 DecreaseButton.Font = Enum.Font.Gotham
 DecreaseButton.Text = "-"
-DecreaseButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+DecreaseButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 DecreaseButton.TextScaled = true
 
 -- IncreaseButton properties
@@ -74,12 +74,12 @@ IncreaseButton.Size = UDim2.new(0, 50, 0, 30)
 IncreaseButton.Position = UDim2.new(0.8, -30, 0.1, 0)
 IncreaseButton.Font = Enum.Font.Gotham
 IncreaseButton.Text = "+"
-IncreaseButton.TextColor3 = Color3.fromRGB(0, 255, 0)
+IncreaseButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 IncreaseButton.TextScaled = true
 
 -- FlyButton properties
 FlyButton.Parent = InnerFrame
-FlyButton.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+FlyButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 FlyButton.Size = UDim2.new(0.8, 0, 0.2, 0)
 FlyButton.Position = UDim2.new(0.1, 0, 0.40, 0)
 FlyButton.Font = Enum.Font.GothamBold
@@ -94,7 +94,7 @@ DestroyButton.Size = UDim2.new(0.8, 0, 0.2, 0)
 DestroyButton.Position = UDim2.new(0.1, 0, 0.65, 0)
 DestroyButton.Font = Enum.Font.GothamBold
 DestroyButton.Text = "Убрать"
-DestroyButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+DestroyButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 DestroyButton.TextScaled = true
 
 -- UICorner properties
