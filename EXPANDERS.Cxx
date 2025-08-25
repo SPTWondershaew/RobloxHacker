@@ -101,7 +101,12 @@ local Window = Rayfield:CreateWindow({
 })
 
 local Global = Window:CreateTab("Global", 125428076789049)
-
+local ImageLoader = Window:CreateTab("Image Loader", 91865122737183)
+local AutoBuild = Window:CreateTab("Auto Build", 128207976113050)
+local BlockNeeded = Window:CreateTab("Block Needed", 138460602231983)
+local Miscellaneous = Window:CreateTab("Miscellaneous", 90305619538335)
+local Information = Window:CreateTab("Information", 84130531909418)
+local Credit = Window:CreateTab("Credit", 103654977021797)
 
 local Section = Credit:CreateSection("Discord")
 Section = Information:CreateSection("Discord")
