@@ -25,7 +25,7 @@ local player = game.Players.LocalPlayer
 local Nplayer = game.Players.LocalPlayer.Name
 
 local Window = Rayfield:CreateWindow({
-    Name = "CHH",
+    Name = "CHHdd",
     Icon = 85108798400826,
     LoadingTitle = "CHH",
     LoadingSubtitle = "Minimal Edition by @thereal_asu",
