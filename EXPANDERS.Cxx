@@ -1,11 +1,7 @@
--- This is the old source
--- new source: loadstring(game:HttpGet('https://raw.githubusercontent.com/TheRealAsu/BABFT/refs/heads/main/Jan25_Source.lua'))()
-
 if game.PlaceId ~= 537413528 then
     return
 end
 
--- Only include Rayfield loading logic
 local Rayfield
 local success
 
@@ -14,15 +10,8 @@ success, Rayfield = pcall(function()
 end)
 
 if not success then
-    success, Rayfield = pcall(function()
-        return loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/ab965bf9a6f9890e6447c9b377678f5bffd8a379/source.lua'))()
-    end)
-end
-
-if not success then
-    success, Rayfield = pcall(function()
-        return loadstring(game:HttpGet('https://github.com/SiriusSoftwareLtd/Rayfield/blob/28c7c270669c16a2ae1526eaaac1dbf927aa881e/source.lua'))()
-    end)
+    warn("Failed to load Rayfield from sirius.menu. Script may not function.")
+    return
 end
 
 local HttpService = cloneref(game:GetService("HttpService"))
@@ -35,10 +24,9 @@ local RunService = game:GetService("RunService")
 local player = game.Players.LocalPlayer
 local Nplayer = game.Players.LocalPlayer.Name
 
--- Create the main window for CHH
 local Window = Rayfield:CreateWindow({
     Name = "CHH",
-    Icon = 85108798400826, -- You can change this icon ID
+    Icon = 85108798400826,
     LoadingTitle = "CHH",
     LoadingSubtitle = "Minimal Edition by @thereal_asu",
     Theme = "DarkBlue",
@@ -50,11 +38,11 @@ local Window = Rayfield:CreateWindow({
        FileName = "CHH Minimal"
     },
     Discord = {
-       Enabled = false, -- Disable Discord for minimal version
+       Enabled = false,
        Invite = "MdtGaG7vdx",
        RememberJoins = true
     },
-    KeySystem = false, -- Keep key system if desired, but remove default key message
+    KeySystem = false,
     KeySettings = {
        Title = "CHH",
        Subtitle = "Minimal Script",
@@ -66,7 +54,6 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
--- Anti-AFK Logic
 local connection
 
 local function enableAntiAFK()
@@ -112,9 +99,6 @@ end
 
 task.spawn(antiAFKLoop)
 
--- Auto Farm Logic
-local Silent = false
-
 local AFKToggle = Window:CreateToggle({
     Name = "Anti-Afk",
     CurrentValue = false,
@@ -129,6 +113,8 @@ if getgenv().afk6464 == true then
 end
 
 Window:CreateDivider()
+
+local Silent = false
 
 local AutoFarmToggle = Window:CreateToggle({
     Name = "Auto Farm",
@@ -174,7 +160,7 @@ local AutoFarmToggle = Window:CreateToggle({
                     end
                     newPart.Position = humanoidRootPart.Position - Vector3.new(0, 2, 0)
 
-                    task.wait(2.3) 
+                    task.wait(2.3)
                     if iteration == 1 then
                         task.wait(2.3)
                     end
@@ -198,7 +184,7 @@ local AutoFarmToggle = Window:CreateToggle({
                     end
                     newPart.Position = humanoidRootPart.Position - Vector3.new(0, 2, 0)
 
-                    task.wait(2.3) 
+                    task.wait(2.3)
                     if iteration == 1 then
                         task.wait(2.3)
                     end
@@ -233,7 +219,8 @@ local AutoFarmToggle = Window:CreateToggle({
                 Title = "Auto Farm - Enabled",
                 Content = "Anti-afk is recommended",
                 Duration = 6.5,
-                Image = 124144713366592,})
+                Image = 124144713366592,
+             })
             game.Players.LocalPlayer.Character:BreakJoints()
             task.wait(1)
             charAddedConnection = game.Players.LocalPlayer.CharacterAdded:Connect(onCharacterRespawned)
@@ -257,8 +244,7 @@ local SilentToggle = Window:CreateToggle({
     CurrentValue = false,
     Flag = "SilentModeToggle",
     Callback = function(Value)
-        Silent = Value
-    end,
+        Silent = Valueend,
 })
 
 local FStats = Window:CreateParagraph({Title = "Auto Farm Stats", Content = "Elapsed time: -\nGoldBlock Gained: -\nGold Gained: -\n\nGold per hour: -"})
@@ -298,7 +284,7 @@ game:GetService("RunService").Stepped:Connect(function()
         task.wait(5)
         startClock()
     end
-end)
+})
 
 local function initClockUpdate()
     while true do
@@ -325,14 +311,13 @@ local function initClockUpdate()
     end
 end
 
-GoldPerHour = 0 -- This line is redundant as GoldPerHour is initialized to 0 above.
+GoldPerHour = 0
 
--- Webhook functionality
-local WebHook = "" -- Initialize as empty string
+local WebHook = ""
 local interval = 1800
 
 local function SendMessageEMBED(url, embed)
-    if not httprequest then return end -- Check if httprequest is available
+    if not httprequest then return end
     local http = game:GetService("HttpService")
     local headers = {
         ["Content-Type"] = "application/json"
@@ -453,5 +438,4 @@ coroutine.wrap(function()
     end
 end)()
 
--- Initialize the clock for stats
 task.spawn(initClockUpdate)
