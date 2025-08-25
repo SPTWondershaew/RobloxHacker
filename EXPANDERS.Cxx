@@ -25,9 +25,9 @@ local player = game.Players.LocalPlayer
 local Nplayer = game.Players.LocalPlayer.Name
 
 local Window = Rayfield:CreateWindow({
-    Name = "CHHdd",
+    Name = "CHHHHH",
     Icon = 85108798400826,
-    LoadingTitle = "CHH",
+    LoadingTitle = "CHHHHH",
     LoadingSubtitle = "Minimal Edition by @thereal_asu",
     Theme = "DarkBlue",
     DisableRayfieldPrompts = true,
@@ -44,7 +44,7 @@ local Window = Rayfield:CreateWindow({
     },
     KeySystem = false,
     KeySettings = {
-       Title = "CHH",
+       Title = "CHHHHH",
        Subtitle = "Minimal Script",
        Note = "No key needed for this version.",
        FileName = "CHHMinimalKey",
@@ -54,17 +54,17 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
-local connection
+local AntiAFKconnection
 
 local function enableAntiAFK()
-    if not connection then
+    if not AntiAFKconnection then
         Rayfield:Notify({
-            Title = "Anti-Afk | ON",
-            Content = "You won't get kicked after 20 minutes of inactivity",
+            Title = "Анти афк | ВКЛ",
+            Content = "Вы не будете отключены через 20 минут бездействия",
             Duration = 6.5,
             Image = 124144713366592,
          })
-        connection = player.Idled:Connect(function()
+        AntiAFKconnection = player.Idled:Connect(function()
             if getgenv().afk6464 then
                 VirtualUser:CaptureController()
                 VirtualUser:ClickButton2(Vector2.new())
@@ -74,12 +74,12 @@ local function enableAntiAFK()
 end
 
 local function disableAntiAFK()
-    if connection then
-        connection:Disconnect()
-        connection = nil
+    if AntiAFKconnection then
+        AntiAFKconnection:Disconnect()
+        AntiAFKconnection = nil
         Rayfield:Notify({
-            Title = "Anti-Afk | OFF",
-            Content = "You will be kicked after 20 minutes of inactivity",
+            Title = "Анти афк | ВЫКЛ",
+            Content = "Вы будете отключены через 20 минут бездействия",
             Duration = 6.5,
             Image = 124144713366592,
          })
@@ -99,25 +99,8 @@ end
 
 task.spawn(antiAFKLoop)
 
-local AFKToggle = Window:CreateToggle({
-    Name = "Anti-Afk",
-    CurrentValue = false,
-    Flag = "AntiAfkToggle",
-    Callback = function(Value)
-        getgenv().afk6464 = Value
-    end,
-})
-
-if getgenv().afk6464 == true then
-    AFKToggle:Set(true)
-end
-
-Window:CreateDivider()
-
-local Silent = false
-
 local AutoFarmToggle = Window:CreateToggle({
-    Name = "Auto Farm",
+    Name = "Авто фарм",
     CurrentValue = false,
     Flag = "AutoFarmToggle",
     Callback = function(Value)
@@ -142,56 +125,30 @@ local AutoFarmToggle = Window:CreateToggle({
             decal.Parent = newPart
 
             local function TPAF(iteration)
-                if not Silent then
-                    if Value == false then return end
-                    if iteration == 5 then
-                        firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"), workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger, 0)
-                        task.delay(0.8, function()
-                            workspace.ClaimRiverResultsGold:FireServer()
-                        end)
-
-                        humanoidRootPart.CFrame = CFrame.new(-51, 65, 984 + (iteration - 1) * 770)
-                    else
-                        if iteration == 1 then
-                            humanoidRootPart.CFrame = CFrame.new(160.16104125976562, 29.595888137817383, 973.813720703125)
-                        else
-                            humanoidRootPart.CFrame = CFrame.new(-51, 65, 984 + (iteration - 1) * 770)
-                        end
-                    end
-                    newPart.Position = humanoidRootPart.Position - Vector3.new(0, 2, 0)
-
-                    task.wait(2.3)
-                    if iteration == 1 then
-                        task.wait(2.3)
-                    end
-                    if iteration == 4 then
-                    else
+                if Value == false then return end
+                if iteration == 5 then
+                    firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"), workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger, 0)
+                    task.delay(0.8, function()
                         workspace.ClaimRiverResultsGold:FireServer()
-                    end
+                    end)
+
+                    humanoidRootPart.CFrame = CFrame.new(-51, 65, 984 + (iteration - 1) * 770)
                 else
-                    if Value == false then return end
                     if iteration == 1 then
                         humanoidRootPart.CFrame = CFrame.new(160.16104125976562, 29.595888137817383, 973.813720703125)
-                    elseif iteration == 5 then
-                        firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"), workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger, 0)
-                        task.delay(0.8, function()
-                            workspace.ClaimRiverResultsGold:FireServer()
-                        end)
-                        
-                        humanoidRootPart.CFrame = CFrame.new(70.02417755126953, 138.9026336669922, 1371.6341552734375 + (iteration - 2) * 770)
                     else
-                        humanoidRootPart.CFrame = CFrame.new(70.02417755126953, 138.9026336669922, 1371.6341552734375 + (iteration - 2) * 770)
+                        humanoidRootPart.CFrame = CFrame.new(-51, 65, 984 + (iteration - 1) * 770)
                     end
-                    newPart.Position = humanoidRootPart.Position - Vector3.new(0, 2, 0)
+                end
+                newPart.Position = humanoidRootPart.Position - Vector3.new(0, 2, 0)
 
+                task.wait(2.3)
+                if iteration == 1 then
                     task.wait(2.3)
-                    if iteration == 1 then
-                        task.wait(2.3)
-                    end
-                    if iteration == 4 then
-                    else
-                        workspace.ClaimRiverResultsGold:FireServer()
-                    end
+                end
+                if iteration == 4 then
+                else
+                    workspace.ClaimRiverResultsGold:FireServer()
                 end
             end
 
@@ -216,8 +173,8 @@ local AutoFarmToggle = Window:CreateToggle({
 
         if Value then
             Rayfield:Notify({
-                Title = "Auto Farm - Enabled",
-                Content = "Anti-afk is recommended",
+                Title = "Авто фарм | ВКЛ",
+                Content = "Анти-афк рекомендуется",
                 Duration = 6.5,
                 Image = 124144713366592,
              })
@@ -226,8 +183,8 @@ local AutoFarmToggle = Window:CreateToggle({
             charAddedConnection = game.Players.LocalPlayer.CharacterAdded:Connect(onCharacterRespawned)
         else
             Rayfield:Notify({
-                Title = "Auto Farm - Disabled",
-                Content = "Please, wait for the current iteration to finish...",
+                Title = "Авто фарм | ВЫКЛ",
+                Content = "Пожалуйста, дождитесь завершения текущей итерации...",
                 Duration = 6.5,
                 Image = 124144713366592,
              })
@@ -239,15 +196,20 @@ local AutoFarmToggle = Window:CreateToggle({
     end,
 })
 
-local SilentToggle = Window:CreateToggle({
-    Name = "Make it Silent",
+local AFKToggle = Window:CreateToggle({
+    Name = "Анти афк",
     CurrentValue = false,
-    Flag = "SilentModeToggle",
+    Flag = "AntiAfkToggle",
     Callback = function(Value)
-        Silent = Valueend,
+        getgenv().afk6464 = Value
+    end,
 })
 
-local FStats = Window:CreateParagraph({Title = "Auto Farm Stats", Content = "Elapsed time: -\nGoldBlock Gained: -\nGold Gained: -\n\nGold per hour: -"})
+if getgenv().afk6464 == true then
+    AFKToggle:Set(true)
+end
+
+local FStats = Window:CreateParagraph({Title = "Статистика", Content = "Время: -\nБлоков золота: -\nЗолота получено: -\n\nЗолота в час: -"})
 
 local clockTime = 0
 local running = false
@@ -262,7 +224,7 @@ local function formatTime(seconds)
     local hours = math.floor(seconds / 3600)
     local minutes = math.floor((seconds % 3600) / 60)
     local sec = seconds % 60
-    return hours .. " hours " .. minutes .. " minutes " .. sec .. " seconds"
+    return hours .. " часов " .. minutes .. " минут " .. sec .. " секунд"
 end
 
 local function startClock()
@@ -298,11 +260,11 @@ local function initClockUpdate()
         GoldPerHour = (clockTime > 0) and (totalGoldGained / clockTime) * 3600 or 0
 
         FStats:Set({
-            Title = "Auto Farm Stats",
-            Content = "Elapsed time: " .. Ftime .. "\n" ..
-                      "GoldBlock Gained: " .. totalGoldBlock .. "\n" ..
-                      "Gold Gained: " .. totalGoldGained .. "\n" ..
-                      "Gold per hour: " .. math.floor(GoldPerHour),
+            Title = "Статистика",
+            Content = "Время: " .. Ftime .. "\n" ..
+                      "Блоков золота: " .. totalGoldBlock .. "\n" ..
+                      "Золота получено: " .. totalGoldGained .. "\n" ..
+                      "Золота в час: " .. math.floor(GoldPerHour),
         })
 
         lastGoldValue = FinalGold
@@ -312,130 +274,5 @@ local function initClockUpdate()
 end
 
 GoldPerHour = 0
-
-local WebHook = ""
-local interval = 1800
-
-local function SendMessageEMBED(url, embed)
-    if not httprequest then return end
-    local http = game:GetService("HttpService")
-    local headers = {
-        ["Content-Type"] = "application/json"
-    }
-    local data = {
-        ["embeds"] = {
-            {
-                ["title"] = embed.title,
-                ["description"] = embed.description,
-                ["color"] = embed.color,
-                ["fields"] = embed.fields,
-                ["footer"] = {
-                    ["text"] = embed.footer.text
-                },
-                ["thumbnail"] = {
-                    ["url"] = embed.thumbnail_url
-                }
-            }
-        }
-    }
-    local body = http:JSONEncode(data)
-    local success, response = pcall(function()
-        return httprequest({
-            Url = url,
-            Method = "POST",
-            Headers = headers,
-            Body = body
-        })
-    end)
-    if not success then
-        warn("Webhook request failed: ", response)
-    end
-end
-
-local function SendAUTOFARMInfo(Ftime_param, totalGoldBlock_param, totalGoldGained_param, GoldPerHour_param)
-    local embed = {
-        ["title"] = "BABFT | Auto Farm",
-        ["description"] = "Stats",
-        ["color"] = 16777215,
-        ["fields"] = {
-            {
-                ["name"] = "Time Elapsed",
-                ["value"] = Ftime_param or "0 hours 0 minutes 0 seconds"
-            },
-            {
-                ["name"] = "GoldBlock Gained:",
-                ["value"] = tostring(totalGoldBlock_param) or "0"
-            },
-            {
-                ["name"] = "Gold Gained:",
-                ["value"] = tostring(totalGoldGained_param) or "0"
-            },
-            {
-                ["name"] = "Gold per hour:",
-                ["value"] = tostring(math.floor(GoldPerHour_param)) or "0"
-            },
-            {
-                ["name"] = "Total Gold:",
-                ["value"] = tostring(game:GetService("Players").LocalPlayer.Data.Gold.Value) or "0"
-            },
-        },
-        ["footer"] = {
-            ["text"] = "Script by @thereal_asu"
-        },
-        ["thumbnail_url"] = "https://tr.rbxcdn.com/180DAY-5cc07c05652006d448479ae66212782d/768/432/Image/Webp/noFilter"
-    }
-
-    if WebHook and WebHook ~= "" then
-        print("Sending webhook message...")
-        SendMessageEMBED(WebHook, embed)
-    else
-        warn("Webhook URL is empty. Not sending message.")
-    end
-end
-
-Window:CreateDivider()
-
-Window:CreateInput({
-    Name = "Discord Webhook URL:",
-    CurrentValue = "",
-    PlaceholderText = "URL",
-    RemoveTextAfterFocusLost = false,
-    Flag = "WebhookInput",
-    Callback = function(Text)
-        WebHook = Text
-    end,
-})
-
-Window:CreateInput({
-    Name = "Time between webhook messages:",
-    CurrentValue = "1800",
-    PlaceholderText = "Seconds",
-    RemoveTextAfterFocusLost = false,
-    Flag = "IntervalInput",
-    Callback = function(Text)
-        interval = tonumber(Text) or 1800
-    end,
-})
-
-Window:CreateToggle({
-    Name = "Use WebHook",
-    CurrentValue = false,
-    Flag = "UseWebhookToggle",
-    Callback = function(Value)
-        getgenv().WBhook = Value
-    end,
-})
-
-coroutine.wrap(function()
-    while true do
-        if getgenv().WBhook and getgenv().AF and not getgenv().intervalLock and WebHook and WebHook ~= "" then
-            getgenv().intervalLock = true
-            SendAUTOFARMInfo(Ftime, totalGoldBlock, totalGoldGained, GoldPerHour)
-            task.wait(interval)
-            getgenv().intervalLock = false
-        end
-        task.wait(1)
-    end
-end)()
 
 task.spawn(initClockUpdate)
