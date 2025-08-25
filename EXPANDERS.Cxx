@@ -273,4 +273,4 @@ end
 
 GoldPerHour = 0
 
-task.spawn(initClockUpdate)
+Init()
