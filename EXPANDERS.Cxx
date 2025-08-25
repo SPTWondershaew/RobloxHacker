@@ -14,11 +14,9 @@ if not success then
     return
 end
 
-local HttpService = cloneref(game:GetService("HttpService"))
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
 local VirtualUser = game:GetService("VirtualUser")
-local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 local RunService = game:GetService("RunService")
 
 local player = game.Players.LocalPlayer
@@ -45,8 +43,8 @@ local Window = Rayfield:CreateWindow({
     KeySystem = false,
     KeySettings = {
        Title = "CHHHHH",
-       Subtitle = "Minimal Script",
-       Note = "No key needed for this version.",
+       Subtitle = "Минимальный скрипт",
+       Note = "Ключ не требуется для этой версии.",
        FileName = "CHHMinimalKey",
        SaveKey = true,
        GrabKeyFromSite = false,
@@ -54,17 +52,17 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
-local AntiAFKconnection
+local connection
 
 local function enableAntiAFK()
-    if not AntiAFKconnection then
+    if not connection then
         Rayfield:Notify({
             Title = "Анти афк | ВКЛ",
             Content = "Вы не будете отключены через 20 минут бездействия",
             Duration = 6.5,
             Image = 124144713366592,
          })
-        AntiAFKconnection = player.Idled:Connect(function()
+        connection = player.Idled:Connect(function()
             if getgenv().afk6464 then
                 VirtualUser:CaptureController()
                 VirtualUser:ClickButton2(Vector2.new())
@@ -74,9 +72,9 @@ local function enableAntiAFK()
 end
 
 local function disableAntiAFK()
-    if AntiAFKconnection then
-        AntiAFKconnection:Disconnect()
-        AntiAFKconnection = nil
+    if connection then
+        connection:Disconnect()
+        connection = nil
         Rayfield:Notify({
             Title = "Анти афк | ВЫКЛ",
             Content = "Вы будете отключены через 20 минут бездействия",
@@ -137,7 +135,7 @@ local AutoFarmToggle = Window:CreateToggle({
                     if iteration == 1 then
                         humanoidRootPart.CFrame = CFrame.new(160.16104125976562, 29.595888137817383, 973.813720703125)
                     else
-                        humanoidRootPart.CFrame = CFrame.new(-51, 65, 984 + (iteration - 1) * 770)
+                    humanoidRootPart.CFrame = CFrame.new(-51, 65, 984 + (iteration - 1) * 770)
                     end
                 end
                 newPart.Position = humanoidRootPart.Position - Vector3.new(0, 2, 0)
@@ -262,7 +260,7 @@ local function initClockUpdate()
         FStats:Set({
             Title = "Статистика",
             Content = "Время: " .. Ftime .. "\n" ..
-                      "Блоков золота: " .. totalGoldBlock .. "\n" ..
+                      "Блоков золота: " .. totalGoldBlock .."\n" ..
                       "Золота получено: " .. totalGoldGained .. "\n" ..
                       "Золота в час: " .. math.floor(GoldPerHour),
         })
