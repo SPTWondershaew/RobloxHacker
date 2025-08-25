@@ -1,6 +1,40 @@
+-- This is the old source
+-- new source: loadstring(game:HttpGet('https://raw.githubusercontent.com/TheRealAsu/BABFT/refs/heads/main/Jan25_Source.lua'))()
+
 if game.PlaceId ~= 537413528 then
     return
 end
+
+task.spawn(function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TheRealAsu/BABFT/refs/heads/main/MessageIssue.lua'))()
+end)
+
+if not isfolder("BABFT") then
+    makefolder("BABFT")
+end
+
+if not isfolder("BABFT/Image") then
+    makefolder("BABFT/Image")
+end
+
+if not isfolder("BABFT/Build") then
+    makefolder("BABFT/Build")
+end
+
+local FcMaster = true
+local folderName = "ImagePreview"
+local previewFolder = Workspace:FindFirstChild(folderName) or Instance.new("Folder", Workspace)
+previewFolder.Name = folderName
+
+for _, v in ipairs(previewFolder:GetChildren()) do
+    v:Destroy()
+end
+
+task.delay(10, function()
+    if game:GetService("CoreGui"):FindFirstChild("MSGISSUE") then
+        game:GetService("CoreGui").MSGISSUE:Destroy()
+    end
+end)
 
 local Rayfield
 local success
@@ -10,45 +44,59 @@ success, Rayfield = pcall(function()
 end)
 
 if not success then
-    warn("Failed to load Rayfield from sirius.menu. Script may not function.")
-    return
+    success, Rayfield = pcall(function()
+        return loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/ab965bf9a6f9890e6447c9b377678f5bffd8a379/source.lua'))()
+    end)
 end
 
+if not success then
+    success, Rayfield = pcall(function()
+        return loadstring(game:HttpGet('https://github.com/SiriusSoftwareLtd/Rayfield/blob/28c7c270669c16a2ae1526eaaac1dbf927aa881e/source.lua'))()
+    end)
+end
+
+local HttpService = cloneref(game:GetService("HttpService"))
+local TeleportService = cloneref(game:GetService("TeleportService"))
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
 local VirtualUser = game:GetService("VirtualUser")
+local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
+local JobId = game.JobId
+local PlaceId = game.PlaceId
+local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 local RunService = game:GetService("RunService")
 
-local player = game.Players.LocalPlayer
-local Nplayer = game.Players.LocalPlayer.Name
-
 local Window = Rayfield:CreateWindow({
-    Name = "CHHHHH",
+    Name = "Build A Boat For Treasure",
     Icon = 85108798400826,
-    LoadingTitle = "CHHHHH",
-    LoadingSubtitle = "Minimal Edition by @thereal_asu",
+    LoadingTitle = "Build A Boat For Treasure",
+    LoadingSubtitle = "Made With ❤️ by @thereal_asu",
     Theme = "DarkBlue",
+ 
     DisableRayfieldPrompts = true,
     DisableBuildWarnings = true,
+ 
     ConfigurationSaving = {
        Enabled = false,
        FolderName = nil,
-       FileName = "CHH Minimal"
+       FileName = "Big Hub"
     },
+ 
     Discord = {
-       Enabled = false,
+       Enabled = true,
        Invite = "MdtGaG7vdx",
        RememberJoins = true
     },
+ 
     KeySystem = false,
     KeySettings = {
-       Title = "CHHHHH",
-       Subtitle = "Минимальный скрипт",
-       Note = "Ключ не требуется для этой версии.",
-       FileName = "CHHMinimalKey",
+       Title = "discord.gg/uGhnBu89SM",
+       Subtitle = "Key System",
+       Note = "Key available in discord, link copied to clipboard",
+       FileName = "ASUBABFTKey",
        SaveKey = true,
        GrabKeyFromSite = false,
-       Key = {"minimal"}
+       Key = {"terraria"} -- yes there is a keysystem but my script is not obfuscated lol
     }
 })
 
