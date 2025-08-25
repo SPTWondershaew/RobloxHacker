@@ -174,7 +174,7 @@ local AutoFarmToggle = Window:CreateToggle({
                     end
                     newPart.Position = humanoidRootPart.Position - Vector3.new(0, 2, 0)
 
-                    task.wait(2.3) -- if lower, it can't work every time
+                    task.wait(2.3) 
                     if iteration == 1 then
                         task.wait(2.3)
                     end
@@ -198,7 +198,7 @@ local AutoFarmToggle = Window:CreateToggle({
                     end
                     newPart.Position = humanoidRootPart.Position - Vector3.new(0, 2, 0)
 
-                    task.wait(2.3) -- if lower, it can't work every time
+                    task.wait(2.3) 
                     if iteration == 1 then
                         task.wait(2.3)
                     end
