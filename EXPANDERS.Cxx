@@ -1,3 +1,30 @@
+-- This is the old source
+-- new source: loadstring(game:HttpGet('https://raw.githubusercontent.com/TheRealAsu/BABFT/refs/heads/main/Jan25_Source.lua'))()
+
+if game.PlaceId ~= 537413528 then
+    return
+end
+
+-- Only include Rayfield loading logic
+local Rayfield
+local success
+
+success, Rayfield = pcall(function()
+    return loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+end)
+
+if not success then
+    success, Rayfield = pcall(function()
+        return loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusSoftwareLtd/Rayfield/ab965bf9a6f9890e6447c9b377678f5bffd8a379/source.lua'))()
+    end)
+end
+
+if not success then
+    success, Rayfield = pcall(function()
+        return loadstring(game:HttpGet('https://github.com/SiriusSoftwareLtd/Rayfield/blob/28c7c270669c16a2ae1526eaaac1dbf927aa881e/source.lua'))()
+    end)
+end
+
 local HttpService = cloneref(game:GetService("HttpService"))
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
