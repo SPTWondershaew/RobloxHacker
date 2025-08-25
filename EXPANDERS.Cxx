@@ -1,33 +1,54 @@
--- This is the old source
--- new source: loadstring(game:HttpGet('https://raw.githubusercontent.com/TheRealAsu/BABFT/refs/heads/main/Jan25_Source.lua'))()
 
-if game.PlaceId ~= 537413528 then
-    return
-end
+local HttpService = cloneref(game:GetService("HttpService"))
+local TeleportService = cloneref(game:GetService("TeleportService"))
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local VirtualUser = game:GetService("VirtualUser")
+local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
+local JobId = game.JobId
+local PlaceId = game.PlaceId
+local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+local RunService = game:GetService("RunService")
 
-task.spawn(function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/TheRealAsu/BABFT/refs/heads/main/MessageIssue.lua'))()
-end)
+local Window = Rayfield:CreateWindow({
+    Name = "Build A Boat For Treasure",
+    Icon = 85108798400826,
+    LoadingTitle = "Build A Boat For Treasure",
+    LoadingSubtitle = "Made With ❤️ by ",
+    Theme = "DarkBlue",
+ 
+    DisableRayfieldPrompts = true,
+    DisableBuildWarnings = true,
+ 
+    ConfigurationSaving = {
+       Enabled = false,
+       FolderName = nil,
+       FileName = "Big Hub"
+    },
+ 
+    KeySystem = false,
+    KeySettings = {
+       Title = "discord.gg/uGhnBu89SM",
+       Subtitle = "Key System",
+       Note = "Key available in discord, link copied to clipboard",
+       FileName = "ASUBABFTKey",
+       SaveKey = true,
+       GrabKeyFromSite = false,
+       Key = {"terraria"} -- yes there is a keysystem but my script is not obfuscated lol
+    }
+})
 
-if not isfolder("BABFT") then
-    makefolder("BABFT")
-end
+local Global = Window:CreateTab("Global", 125428076789049)
 
-if not isfolder("BABFT/Image") then
-    makefolder("BABFT/Image")
-end
 
-if not isfolder("BABFT/Build") then
-    makefolder("BABFT/Build")
-end
 
-local FcMaster = true
-local folderName = "ImagePreview"
-local previewFolder = Workspace:FindFirstChild(folderName) or Instance.new("Folder", Workspace)
-previewFolder.Name = folderName
 
-for _, v in ipairs(previewFolder:GetChildren()) do
-    v:Destroy()
+
+local Button = Global:CreateButton({
+    Name = "Load new script",
+    Callback = function()
+        for _, v in ipairs(previewFolder:GetChildren()) do
+            v:Destroy()
 end
 
 task.delay(10, function()
