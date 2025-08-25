@@ -101,6 +101,27 @@ local Window = Rayfield:CreateWindow({
 })
 
 local Global = Window:CreateTab("Фарм", 125428076789049)
+Section = Information:CreateSection("Auto Farm")
+local Paragraph = Information:CreateParagraph({Title = "Information", Content = "let me know if you've ever seen an auto farm more powerful than this one in terms of gold per hour, you can use a webhook to follow the auto farm stats when you're not in front of your screen.\n\n - With no boost: 20K/hour\n - With x1.25: 25K/hour\n - With x2: 40K/hour\n - With Both: 50k/hour"})
+Section = Information:CreateSection("Image Loader")
+local Paragraph = Information:CreateParagraph({Title = "Requirement", Content = "Paste the image URL in the textbox and let the server convert the image, the server can't access certain images (it's not a coding problem) OR you can convert the image yourself: (more images are supported) Images are created from files that contain special data (RGB), to have these files or to create your own files from an image that you have chosen you must join the discord, you need an external script (open source) that converts the image into a file suitable for this script to be used, a tutorial is in the Discord Server.\n\n - Build Speed: You can choose the speed at which the image is built. If you have a slow internet connection, set the speed to low. Do not set it to max for large images\n\n- Preview: Displays a preview of the image, making it easier to use modifiers or to see how the image will look. It is also required to build the image.\n\n- Change Speed: Stop the current process by opening your inventory and checking if no more blocks are being placed. Change the speed and press 'Load Image' again. It should automatically resume from where it stopped.\n\n- Optimize Mode: Allows even the weakest PCs or those without a good connection to load images."})
+local Button = Information:CreateButton({
+    Name = "copy the list of working sites",
+    Callback = function()
+        setclipboard("https://www.pythonanywhere.com/whitelist/")
+        Rayfield:Notify({
+            Title = "Copied!",
+            Content = "past the link in your browser to see which sites work",
+            Duration = 6.5,
+            Image = 124144713366592,
+         })
+    end,
+ })
+Section = Information:CreateSection("Auto Build")
+local Paragraph = Information:CreateParagraph({Title = "Information - [AUTO BUILD IS IN WORK IN PROGRESS]", Content = "this feature does not require any external requirement, if you save a build with a name that already existed, it will overwrite it. You can download and shares files in the Discord Server.\n\n - Safe Mode: prevents crashes during loading if you have a poor internet connection, this toggle slows down build speed.\n\n - Preview: displays a preview of the build."})
+
+local player = game.Players.LocalPlayer
+local Nplayer = game.Players.LocalPlayer.Name
 
 
 local Section = Credit:CreateSection("Discord")
