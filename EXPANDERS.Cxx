@@ -428,7 +428,7 @@ Window:CreateInput({
     RemoveTextAfterFocusLost = false,
     Flag = "IntervalInput",
     Callback = function(Text)
-        interval = tonumber(Text) or 1800 -- Ensure it's a number, default to 1800
+        interval = tonumber(Text) or 1800
     end,
 })
 
