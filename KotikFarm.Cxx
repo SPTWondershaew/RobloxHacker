@@ -29,7 +29,7 @@ local Window = Rayfield:CreateWindow({
     Name = "Creators @Im_DrHacker 🔥 @Im_DrHackersha 🐱", -- Как на примере
     Icon = 5009915812,
     LoadingTitle = "Кот бизнесмен",
-    LoadingSubtitle = "Меня зовут котик бизнесмен!",
+    LoadingSubtitle = "Меня зовут котик бизнесмен! 🐱",
     Theme = "DarkBlue",
     DisableRayfieldPrompts = true,
     DisableBuildWarnings = true,
@@ -180,7 +180,7 @@ local AutoFarmToggle = Global:CreateToggle({
         if Value then
             Rayfield:Notify({
                 Title = "Авто фарм | ВКЛ",
-                Content = "16, 40 за 4 секунды это ухти пухти!",
+                Content = "4 секунды = 16-40 это ухти пухти!",
                 Duration = 6.5,
                 Image = 124144713366592,
              })
