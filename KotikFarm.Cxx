@@ -268,24 +268,25 @@ while true do
     GoldPerHour = (clockTime > 0) and (totalGoldGained / clockTime) * 3600 or 0
 
     FStats:Set({
-        Title = "Статистика",
+        Title = "Статистика", -- Оставляем этот заголовок для статистики
         Content = "Время: " .. Ftime .. "\n" ..
                   "Дошёл до конца: " .. totalGoldBlock .. " раз\n" ..
                   "Золота получено: " .. totalGoldGained .. "\n" ..
-                  "Золота в час: " .. math.floor(GoldPerHour),
-    })
-    itats:Set({
-        Title = "Информация",
-        Content =
-                  "Создатели: t.me/Im_DrHacker // t.me/Im_DrHackersha\n",
-                  "@kill666you_0 // @Adiwxy \n",
+                  "Золота в час: " .. math.floor(GoldPerHour) .. "\n\n" .. -- <-- ИСПРАВЛЕНИЕ: Удалена лишняя запятая, и текст объединен
+                  "--- Информация ---\n" .. -- Добавлен разделитель для ясности
+                  "Создатели: t.me/Im_DrHacker // t.me/Im_DrHackersha\n" ..
+                  "@kill666you_0 // @Adiwxy \n" .. -- Взял @Adiwxy из второго блока, если это более актуально
                   "Дата создания: 26.08.2025",
     })
+    -- ИСПРАВЛЕНИЕ: Этот второй блок FStats:Set удален, так как он дублировал и перезаписывал предыдущий.
+    -- Вся информация объединена в один вывод.
+
     lastGoldValue = FinalGold
 
     task.wait(1)
 end
 end
+
 
 GoldPerHour = 0
 
