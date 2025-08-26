@@ -267,7 +267,7 @@ while true do
 
     GoldPerHour = (clockTime > 0) and (totalGoldGained / clockTime) * 3600 or 0
 
-FStats:Set({
+    FStats:Set({
         Title = "Статистика",
         Content = "Время: " .. Ftime .. "\n" ..
                   "Дошёл до конца: " .. totalGoldBlock .. " раз\n" ..
