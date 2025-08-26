@@ -268,8 +268,8 @@ while true do
 
     FStats:Set({
         Title = "Статистика",
-        Content = "Время работы: " .. Ftime .. "\n" ..
-                  "Дошёл до конца: " .. totalGoldBlock .. " раз\n" ..
+        Content = "Время: " .. Ftime .. "\n" ..
+                  "Блоков золота: " .. totalGoldBlock .. "\n" ..
                   "Золота получено: " .. totalGoldGained .. "\n" ..
                   "Золота в час: " .. math.floor(GoldPerHour),
     })
@@ -283,3 +283,4 @@ end
 GoldPerHour = 0
 
 task.spawn(initClockUpdate)
+
