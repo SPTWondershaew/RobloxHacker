@@ -26,8 +26,8 @@ local Nplayer = game.Players.LocalPlayer.Name
 
 -- Main Rayfield window setup
 local Window = Rayfield:CreateWindow({
-    Name = "🐱Котик бизнесмен🐱", -- Как на примере
-    LoadingTitle = "Кот бизнесмен",
+    Name = "🐱 Котик бизнесмен 🌟", -- Как на примере
+    LoadingTitle = "Кот бизнесмен 🌟",
     LoadingSubtitle = "Привет! Меня зовут котик бизнесмен! 🐱",
     Theme = "DarkBlue",
     DisableRayfieldPrompts = true,
