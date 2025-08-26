@@ -2,19 +2,6 @@ if game.PlaceId ~= 537413528 then
     return
 end
 
--- Rayfield loading (minimal)
-local Rayfield
-local success
-
-success, Rayfield = pcall(function()
-    return loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-end)
-
-if not success then
-    warn("Failed to load Rayfield from sirius.menu. Script may not function.")
-    return
-end
-
 -- Core Roblox services and player info
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
@@ -26,7 +13,7 @@ local Nplayer = game.Players.LocalPlayer.Name
 
 -- Main Rayfield window setup
 local Window = Rayfield:CreateWindow({
-    Name = "Построй корабль и найди сокровище (Котик бизнесмен) 🐱", -- Как на примере
+    Name = "Котик бизнесмен 🐱", -- Как на примере
     Icon = 85108798400826,
     LoadingTitle = "Мяу мяу мяу.. Построй корабль и найди сокровище",
     LoadingSubtitle = "By @Im_DrHacker and @Im_DrHackersha (telegram)",
