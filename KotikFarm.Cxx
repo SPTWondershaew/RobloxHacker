@@ -25,7 +25,7 @@ local Nplayer = game.Players.LocalPlayer.Name
 
 -- Main Rayfield window setup
 local Window = Rayfield:CreateWindow({
-    Name = "Построй корабль и найди сокровище", -- Как на примере
+    Name = "By Im_DrHacker and Im_DrHackersha", -- Как на примере
     Icon = 5009915812,
     LoadingTitle = "Кот бизнесмен",
     LoadingSubtitle = "Creator @Im_DrHacker 🔥 @Im_DrHackersha 🐱",
