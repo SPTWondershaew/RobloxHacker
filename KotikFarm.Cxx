@@ -56,7 +56,7 @@ local Window = Rayfield:CreateWindow({
 })
 
 -- Создаем только вкладку Global
-local Global = Window:CreateTab("Бизнес", 125428076789049)
+local Global = Window:CreateTab("Бизнес (авто фарм)", 125428076789049)
 
 -- === Анти-АФК логика ===
 local connection
