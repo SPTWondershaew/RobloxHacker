@@ -274,13 +274,12 @@ while true do
                   "Золота получено: " .. totalGoldGained .. "\n" ..
                   "Золота в час: " .. math.floor(GoldPerHour),
     })
+
     lastGoldValue = FinalGold
 
     task.wait(1)
 end
 end
-исправь
-
 
 GoldPerHour = 0
 
