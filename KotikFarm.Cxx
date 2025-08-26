@@ -11,14 +11,14 @@ local RunService = game:GetService("RunService")
 local player = game.Players.LocalPlayer
 local Nplayer = game.Players.LocalPlayer.Name
 
--- Main KotBiznesmen window setup
-local Window = KotBiznesmen:CreateWindow({
+-- Main Rayfield window setup
+local Window = Rayfield:CreateWindow({
     Name = "Котик бизнесмен 🐱", -- Как на примере
     Icon = 14768316507,
     LoadingTitle = "Мяу мяу мяу.. Построй корабль и найди сокровище",
     LoadingSubtitle = "By @Im_DrHacker ❤️‍🔥and❤️‍🔥 @Im_DrHackersha (telegram)",
     Theme = "DarkBlue",
-    DisableKotBiznesmenPrompts = true,
+    DisableRayfieldPrompts = true,
     DisableBuildWarnings = true,
     ConfigurationSaving = {
        Enabled = false,
@@ -50,7 +50,7 @@ local connection
 
 local function enableAntiAFK()
     if not connection then
-        KotBiznesmen:Notify({
+        Rayfield:Notify({
             Title = "Анти кикь Вкл",
             Content = "Еее я буду следить чтобы не было Не активности! 🐱",
             Duration = 6.5,
@@ -69,7 +69,7 @@ local function disableAntiAFK()
     if connection then
         connection:Disconnect()
         connection = nil
-        KotBiznesmen:Notify({
+        Rayfield:Notify({
             Title = "Анти афк Выкл",
             Content = "Ниит, я больше не нужен😿",
             Duration = 6.5,
@@ -165,7 +165,7 @@ local AutoFarmToggle = Global:CreateToggle({
         end
 
         if Value then
-            KotBiznesmen:Notify({
+            Rayfield:Notify({
                 Title = "Авто фарм | ВКЛ",
                 Content = "Бизнес котика активирован 🐱",
                 Duration = 6.5,
@@ -175,7 +175,7 @@ local AutoFarmToggle = Global:CreateToggle({
             task.wait(1)
             charAddedConnection = game.Players.LocalPlayer.CharacterAdded:Connect(onCharacterRespawned)
         else
-            KotBiznesmen:Notify({
+            Rayfield:Notify({
                 Title = "Авто фарм | ВЫКЛ",
                 Content = "Эх, Мне жалко что ты выключил дождись когда игрок дойдёт до конца либо ресетнись 😿",
                 Duration = 6.5,
