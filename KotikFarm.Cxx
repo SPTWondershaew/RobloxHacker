@@ -14,7 +14,7 @@ local Nplayer = game.Players.LocalPlayer.Name
 -- Main Rayfield window setup
 local Window = Rayfield:CreateWindow({
     Name = "Котик бизнесмен 🐱", -- Как на примере
-    Icon = 85108798400826,
+    Icon = 14768316507,
     LoadingTitle = "Мяу мяу мяу.. Построй корабль и найди сокровище",
     LoadingSubtitle = "By @Im_DrHacker and @Im_DrHackersha (telegram)",
     Theme = "DarkBlue",
