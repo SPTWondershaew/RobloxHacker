@@ -2,18 +2,6 @@ if game.PlaceId ~= 537413528 then
     return
 end
 
--- Rayfield loading (minimal)
-local Rayfield
-local success
-
-success, Rayfield = pcall(function()
-    return loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-end)
-
-if not success then
-    warn("Failed to load Rayfield from sirius.menu. Script may not function.")
-    return
-end
 -- Core Roblox services and player info
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
