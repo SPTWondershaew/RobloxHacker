@@ -14,10 +14,10 @@ local Nplayer = game.Players.LocalPlayer.Name
 
 -- Main Rayfield window setup
 local Window = Rayfield:CreateWindow({
-    Name = "CHHHHH", -- Как на примере
+    Name = "Построй корабль и найди сокровище", -- Как на примере
     Icon = 85108798400826,
-    LoadingTitle = "CHHHHH",
-    LoadingSubtitle = "Made With ❤️ by @thereal_asu",
+    LoadingTitle = "Кот бизнесМЭН",
+    LoadingSubtitle = "Creator @Im_DrHacker ❤️‍🔥 @Im_DrHackersha 🐱",
     Theme = "DarkBlue",
     DisableRayfieldPrompts = true,
     DisableBuildWarnings = true,
@@ -44,7 +44,7 @@ local Window = Rayfield:CreateWindow({
 })
 
 -- Создаем только вкладку Global
-local Global = Window:CreateTab("Global", 125428076789049)
+local Global = Window:CreateTab("Бизнес", 125428076789049)
 
 -- === Анти-АФК логика ===
 local connection
@@ -53,7 +53,7 @@ local function enableAntiAFK()
     if not connection then
         Rayfield:Notify({
             Title = "Анти афк | ВКЛ",
-            Content = "Вы не будете отключены через 20 минут бездействия",
+            Content = "Я буду следить чтобы не активности не было! 🐱",
             Duration = 6.5,
             Image = 124144713366592,
          })
@@ -72,7 +72,7 @@ local function disableAntiAFK()
         connection = nil
         Rayfield:Notify({
             Title = "Анти афк | ВЫКЛ",
-            Content = "Вы будете отключены через 20 минут бездействия",
+            Content = "Ниит! Очень жаль 😿",
             Duration = 6.5,
             Image = 124144713366592,
          })
@@ -96,7 +96,7 @@ task.spawn(antiAFKLoop)
 
 -- Авто фарм
 local AutoFarmToggle = Global:CreateToggle({
-    Name = "Авто фарм",
+    Name = "Включить",
     CurrentValue = false,
     Flag = "AutoFarmToggle",
     Callback = function(Value)
@@ -168,7 +168,7 @@ local AutoFarmToggle = Global:CreateToggle({
         if Value then
             Rayfield:Notify({
                 Title = "Авто фарм | ВКЛ",
-                Content = "Анти-афк рекомендуется",
+                Content = "16, 40 за 4 секунды это ухти пухти!",
                 Duration = 6.5,
                 Image = 124144713366592,
              })
@@ -178,7 +178,7 @@ local AutoFarmToggle = Global:CreateToggle({
         else
             Rayfield:Notify({
                 Title = "Авто фарм | ВЫКЛ",
-                Content = "Пожалуйста, дождитесь завершения текущей итерации...",
+                Content = "Надеюсь тебе понравилось! ресетнись либо дождись до конца 🐱",
                 Duration = 6.5,
                 Image = 124144713366592,
              })
@@ -205,7 +205,7 @@ if getgenv().afk6464 == true then
 end
 
 -- Статистика
-local FStats = Global:CreateParagraph({Title = "Статистика", Content = "Время: -\nБлоков золота: -\nЗолота получено: -\n\nЗолота в час: -"})
+local FStats = Global:CreateParagraph({Title = "Статистика", Content = "Время работы: -\nДошёл до конца: -\nЗолота получено: -\n\nЗолота в час: -"})
 
 local clockTime = 0
 local running = false
@@ -257,8 +257,8 @@ while true do
 
     FStats:Set({
         Title = "Статистика",
-        Content = "Время: " .. Ftime .. "\n" ..
-                  "Блоков золота: " .. totalGoldBlock .. "\n" ..
+        Content = "Время работы: " .. Ftime .. "\n" ..
+                  "Дошёл до конца: " .. totalGoldBlock .. " раз\n" ..
                   "Золота получено: " .. totalGoldGained .. "\n" ..
                   "Золота в час: " .. math.floor(GoldPerHour),
     })
