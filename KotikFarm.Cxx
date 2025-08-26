@@ -1,7 +1,3 @@
-if game.PlaceId ~= 537413528 then
-    return
-end
-
 
 -- Core Roblox services and player info
 local Players = game:GetService("Players")
