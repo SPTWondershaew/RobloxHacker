@@ -27,7 +27,7 @@ local Nplayer = game.Players.LocalPlayer.Name
 local Window = Rayfield:CreateWindow({
     Name = "Построй корабль и найди сокровище", -- Как на примере
     Icon = 5009915812,
-    LoadingTitle = "Кот бизнесМЭН",
+    LoadingTitle = "Кот бизнесмен",
     LoadingSubtitle = "Creator @Im_DrHacker ❤️‍🔥 @Im_DrHackersha 🐱",
     Theme = "DarkBlue",
     DisableRayfieldPrompts = true,
@@ -269,7 +269,7 @@ while true do
     FStats:Set({
         Title = "Статистика",
         Content = "Время: " .. Ftime .. "\n" ..
-                  "Блоков золота: " .. totalGoldBlock .. "\n" ..
+                  "Дошёл до конца: " .. totalGoldBlock .. " " "раз\n" ..
                   "Золота получено: " .. totalGoldGained .. "\n" ..
                   "Золота в час: " .. math.floor(GoldPerHour),
     })
