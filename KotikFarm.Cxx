@@ -15,6 +15,7 @@ if not success then
     return
 end
 
+
 -- Core Roblox services and player info
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
@@ -26,10 +27,10 @@ local Nplayer = game.Players.LocalPlayer.Name
 
 -- Main Rayfield window setup
 local Window = Rayfield:CreateWindow({
-    Name = "CHHHHH", -- Как на примере
-    Icon = 85108798400826,
-    LoadingTitle = "CHHHHH",
-    LoadingSubtitle = "Made With ❤️ by @thereal_asu",
+    Name = "Котик бизнесмен 🐱", -- Как на примере
+    Icon = 14768316507,
+    LoadingTitle = "Мяу мяу мяу.. Построй корабль и найди сокровище",
+    LoadingSubtitle = "By @Im_DrHacker ❤️‍🔥and❤️‍🔥 @Im_DrHackersha (telegram)",
     Theme = "DarkBlue",
     DisableRayfieldPrompts = true,
     DisableBuildWarnings = true,
