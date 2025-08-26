@@ -117,7 +117,7 @@ local AutoFarmToggle = Global:CreateToggle({
             local decal = Instance.new("Decal")
             decal.Texture = "rbxassetid://139953968294114"
             decal.Face = Enum.NormalId.Top 
-            decal.Parent = newPartlocal function TPAF (iteration)
+            decal.Parent = newPart local function TPAF(iteration)
                 if Value == false then return end
                 if iteration == 5 then
                     firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"), workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger, 0)
