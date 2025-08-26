@@ -272,13 +272,9 @@ while true do
         Content = "Время: " .. Ftime .. "\n" ..
                   "Дошёл до конца: " .. totalGoldBlock .. " раз\n" ..
                   "Золота получено: " .. totalGoldGained .. "\n" ..
-                  "Золота в час: " .. math.floor(GoldPerHour) .. "\n\n" ..,
-                  "Информация:\n",
-                  "Создатели: t.me/Im_DrHacker // t.me/Im_DrHackersha\n",
-                  "@kill666you_0 // @A_2013103 \n",
-                  "Дата создания: 26.08.2025",
+                  "Золота в час: " .. math.floor(GoldPerHour),
     })
-    FStats:Set({
+    itats:Set({
         Title = "Информация",
         Content =
                   "Создатели: t.me/Im_DrHacker // t.me/Im_DrHackersha\n",
