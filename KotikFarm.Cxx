@@ -26,9 +26,9 @@ local Nplayer = game.Players.LocalPlayer.Name
 
 -- Main Rayfield window setup
 local Window = Rayfield:CreateWindow({
-    Name = "Creators @Im_DrHacker 💗 @Im_DrHackersha 🐱", -- Как на примере
+    Name = "🐱Котик бизнесмен🐱", -- Как на примере
     LoadingTitle = "Кот бизнесмен",
-    LoadingSubtitle = "Меня зовут котик бизнесмен! 🐱",
+    LoadingSubtitle = "Привет! Меня зовут котик бизнесмен! 🐱",
     Theme = "DarkBlue",
     DisableRayfieldPrompts = true,
     DisableBuildWarnings = true,
@@ -268,7 +268,7 @@ while true do
 
 FStats:Set({
         Title = "Статистика",
-        Content = "Время: " .. Ftime .. "\n" ..
+        Content = "Время работы: " .. Ftime .. "\n" ..
                   "Дошёл до конца: " .. totalGoldBlock .. " раз\n" ..
                   "Золота получено: " .. totalGoldGained .. "\n" ..
                   "Золота в час: " .. math.floor(GoldPerHour) .. "\n" ..
