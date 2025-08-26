@@ -179,7 +179,7 @@ local AutoFarmToggle = Global:CreateToggle({
         if Value then
             Rayfield:Notify({
                 Title = "Авто фарм | ВКЛ",
-                Content = "Мани мани мани 🤑💴🪙💰",
+                Content = "Мани мани мани 🤑💴💰",
                 Duration = 6.5,
                 Image = 124144713366592,
              })
