@@ -274,13 +274,6 @@ FStats:Set({
                   "Золота получено: " .. totalGoldGained .. "\n" ..
                   "Золота в час: " .. math.floor(GoldPerHour),
     })
-FStats:Set({
-        Title = "Информация",
-        Content =
-                  "Создатели: t.me/Im_DrHacker // t.me/Im_DrHackersha\n",
-                  "@kill666you_0 // @Adiwxy \n",
-                  "Дата создания: 26.08.2025",
-    })
     lastGoldValue = FinalGold
 
     task.wait(1)
