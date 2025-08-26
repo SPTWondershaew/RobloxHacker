@@ -116,12 +116,12 @@ local AutoFarmToggle = Global:CreateToggle({
 
             local decal = Instance.new("Decal")
             decal.Texture = "rbxassetid://139953968294114"
-            decal.Face = Enum.NormalId.Top 
-            decal.Parent = newPartlocal function TPAF(iteration)
+            decal.Face = Enum.NormalId.Top
+            decal.Parent = newPart -- <-- ИСПРАВЛЕНИЕ 1: Добавлен пробел и перенос строки.
+            local function TPAF(iteration)
                 if Value == false then return end
                 if iteration == 5 then
-                    firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"), workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger, 0)
-                    task.delay(0.8, function()
+                    firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"), workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger, 0)task.delay(0.8, function()
                         workspace.ClaimRiverResultsGold:FireServer()
                     end)
 
@@ -171,7 +171,10 @@ local AutoFarmToggle = Global:CreateToggle({
                 Duration = 6.5,
                 Image = 124144713366592,
              })
-            game.Players.LocalPlayer.Character:BreakJoints()
+            local char = game.Players.LocalPlayer.Character -- <-- ИСПРАВЛЕНИЕ 2: Проверка на nil перед BreakJoints
+            if char then
+                char:BreakJoints()
+            end
             task.wait(1)
             charAddedConnection = game.Players.LocalPlayer.CharacterAdded:Connect(onCharacterRespawned)
         else
@@ -223,25 +226,33 @@ local function formatTime(seconds)
 end
 
 local function startClock()
-    if running then return end
-    running = true
+    running = true -- Устанавливаем флаг, что часы запущены
 
-    while running do
+    while running do -- Цикл управляется переменной 'running'
         if getgenv().AF then
             clockTime = clockTime + 1
         else
-            running = false
+            running = false -- Если AF выключилось, выходим из цикла
         end
         task.wait(1) 
     end
 end
 
-game:GetService("RunService").Stepped:Connect(function()
-    if getgenv().AF and not running then
-        task.wait(5)
-        startClock()
+-- !!! ИСПРАВЛЕНИЕ 3: Полностью удален проблемный RunService.Stepped блок.
+-- !!! Вместо него добавлен новый управляющий поток для startClock.
+task.spawn(function()
+    while true do
+        if getgenv().AF and not running then
+            -- AF включено, и часы не запущены -> запускаем их
+            task.spawn(startClock)
+        elseif not getgenv().AF and running then
+            -- AF выключено, и часы запущены -> останавливаем их
+            running = false -- Это приводит к выходу из цикла в startClock
+        end
+        task.wait(0.5) -- Проверяем состояние каждые полсекунды
     end
 end)
+
 
 local function initClockUpdate()
 while true do
@@ -268,6 +279,7 @@ while true do
 end
 end
 
-GoldPerHour = 0
+-- ИСПРАВЛЕНИЕ 4: Эта строка была избыточна и удалена.
+-- GoldPerHour = 0 
 
 task.spawn(initClockUpdate)
