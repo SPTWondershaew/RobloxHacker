@@ -26,8 +26,7 @@ local Nplayer = game.Players.LocalPlayer.Name
 
 -- Main Rayfield window setup
 local Window = Rayfield:CreateWindow({
-    Name = "Creators @Im_DrHacker 🔥 @Im_DrHackersha 🐱", -- Как на примере
-    Icon = 5009915812,
+    Name = "Creators @Im_DrHacker 💗 @Im_DrHackersha 🐱", -- Как на примере
     LoadingTitle = "Кот бизнесмен",
     LoadingSubtitle = "Меня зовут котик бизнесмен! 🐱",
     Theme = "DarkBlue",
@@ -180,7 +179,7 @@ local AutoFarmToggle = Global:CreateToggle({
         if Value then
             Rayfield:Notify({
                 Title = "Авто фарм | ВКЛ",
-                Content = "4 секунды = 16-40 это ухти пухти!",
+                Content = "Мани мани мани 🤑💴🪙💰",
                 Duration = 6.5,
                 Image = 124144713366592,
              })
@@ -273,7 +272,12 @@ while true do
                   "Дошёл до конца: " .. totalGoldBlock .. " раз\n" ..
                   "Золота получено: " .. totalGoldGained .. "\n" ..
                   "Золота в час: " .. math.floor(GoldPerHour) .. "\n" ..
-                  "Золота в секунду: 6,2"
+                  "Золота в секунду: 6,2" .. "\n" ..
+                  "--- Информация ---" .. "\n" ..
+                  "Телеграм создателей" .. "\n" ..
+                  "Разработчик, кодер: t.me/Im_DrHacker" .. "\n" ..
+                  "Помощница: t.me/Im_DrHackersha" .. "\n" ..
+                  "Дата создания 26.082025",
     })
 
     lastGoldValue = FinalGold
