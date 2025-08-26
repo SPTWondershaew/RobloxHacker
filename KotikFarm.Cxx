@@ -2,6 +2,19 @@ if game.PlaceId ~= 537413528 then
     return
 end
 
+-- Rayfield loading (minimal)
+local Rayfield
+local success
+
+success, Rayfield = pcall(function()
+    return loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+end)
+
+if not success then
+    warn("Failed to load Rayfield from sirius.menu. Script may not function.")
+    return
+end
+
 -- Core Roblox services and player info
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
@@ -13,10 +26,10 @@ local Nplayer = game.Players.LocalPlayer.Name
 
 -- Main Rayfield window setup
 local Window = Rayfield:CreateWindow({
-    Name = "Котик бизнесмен 🐱", -- Как на примере
-    Icon = 14768316507,
-    LoadingTitle = "Мяу мяу мяу.. Построй корабль и найди сокровище",
-    LoadingSubtitle = "By @Im_DrHacker ❤️‍🔥and❤️‍🔥 @Im_DrHackersha (telegram)",
+    Name = "CHHHHH", -- Как на примере
+    Icon = 85108798400826,
+    LoadingTitle = "CHHHHH",
+    LoadingSubtitle = "Made With ❤️ by @thereal_asu",
     Theme = "DarkBlue",
     DisableRayfieldPrompts = true,
     DisableBuildWarnings = true,
@@ -43,7 +56,7 @@ local Window = Rayfield:CreateWindow({
 })
 
 -- Создаем только вкладку Global
-local Global = Window:CreateTab("Фарм", 125428076789049)
+local Global = Window:CreateTab("Global", 125428076789049)
 
 -- === Анти-АФК логика ===
 local connection
@@ -51,8 +64,8 @@ local connection
 local function enableAntiAFK()
     if not connection then
         Rayfield:Notify({
-            Title = "Анти кикь Вкл",
-            Content = "Еее я буду следить чтобы не было Не активности! 🐱",
+            Title = "Анти афк | ВКЛ",
+            Content = "Вы не будете отключены через 20 минут бездействия",
             Duration = 6.5,
             Image = 124144713366592,
          })
@@ -70,8 +83,8 @@ local function disableAntiAFK()
         connection:Disconnect()
         connection = nil
         Rayfield:Notify({
-            Title = "Анти афк Выкл",
-            Content = "Ниит, я больше не нужен😿",
+            Title = "Анти афк | ВЫКЛ",
+            Content = "Вы будете отключены через 20 минут бездействия",
             Duration = 6.5,
             Image = 124144713366592,
          })
@@ -95,7 +108,7 @@ task.spawn(antiAFKLoop)
 
 -- Авто фарм
 local AutoFarmToggle = Global:CreateToggle({
-    Name = "Бизнес котика",
+    Name = "Авто фарм",
     CurrentValue = false,
     Flag = "AutoFarmToggle",
     Callback = function(Value)
@@ -116,12 +129,12 @@ local AutoFarmToggle = Global:CreateToggle({
 
             local decal = Instance.new("Decal")
             decal.Texture = "rbxassetid://139953968294114"
-            decal.Face = Enum.NormalId.Top
-            decal.Parent = newPart -- <-- ИСПРАВЛЕНИЕ 1: Добавлен пробел и перенос строки.
-            local function TPAF(iteration)
+            decal.Face = Enum.NormalId.Top 
+            decal.Parent = newPartlocal function TPAF(iteration)
                 if Value == false then return end
                 if iteration == 5 then
-                    firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"), workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger, 0)task.delay(0.8, function()
+                    firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart"), workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger, 0)
+                    task.delay(0.8, function()
                         workspace.ClaimRiverResultsGold:FireServer()
                     end)
 
@@ -167,20 +180,17 @@ local AutoFarmToggle = Global:CreateToggle({
         if Value then
             Rayfield:Notify({
                 Title = "Авто фарм | ВКЛ",
-                Content = "Бизнес котика активирован 🐱",
+                Content = "Анти-афк рекомендуется",
                 Duration = 6.5,
                 Image = 124144713366592,
              })
-            local char = game.Players.LocalPlayer.Character -- <-- ИСПРАВЛЕНИЕ 2: Проверка на nil перед BreakJoints
-            if char then
-                char:BreakJoints()
-            end
+            game.Players.LocalPlayer.Character:BreakJoints()
             task.wait(1)
             charAddedConnection = game.Players.LocalPlayer.CharacterAdded:Connect(onCharacterRespawned)
         else
             Rayfield:Notify({
                 Title = "Авто фарм | ВЫКЛ",
-                Content = "Эх, Мне жалко что ты выключил дождись когда игрок дойдёт до конца либо ресетнись 😿",
+                Content = "Пожалуйста, дождитесь завершения текущей итерации...",
                 Duration = 6.5,
                 Image = 124144713366592,
              })
@@ -207,7 +217,7 @@ if getgenv().afk6464 == true then
 end
 
 -- Статистика
-local FStats = Global:CreateParagraph({Title = "Статистика", Content = "Время: -\nДошёл до конца: -\nЗолота получено: -\n\nЗолота в час: -"})
+local FStats = Global:CreateParagraph({Title = "Статистика", Content = "Время: -\nБлоков золота: -\nЗолота получено: -\n\nЗолота в час: -"})
 
 local clockTime = 0
 local running = false
@@ -226,33 +236,25 @@ local function formatTime(seconds)
 end
 
 local function startClock()
-    running = true -- Устанавливаем флаг, что часы запущены
+    if running then return end
+    running = true
 
-    while running do -- Цикл управляется переменной 'running'
+    while running do
         if getgenv().AF then
             clockTime = clockTime + 1
         else
-            running = false -- Если AF выключилось, выходим из цикла
+            running = false
         end
         task.wait(1) 
     end
 end
 
--- !!! ИСПРАВЛЕНИЕ 3: Полностью удален проблемный RunService.Stepped блок.
--- !!! Вместо него добавлен новый управляющий поток для startClock.
-task.spawn(function()
-    while true do
-        if getgenv().AF and not running then
-            -- AF включено, и часы не запущены -> запускаем их
-            task.spawn(startClock)
-        elseif not getgenv().AF and running then
-            -- AF выключено, и часы запущены -> останавливаем их
-            running = false -- Это приводит к выходу из цикла в startClock
-        end
-        task.wait(0.5) -- Проверяем состояние каждые полсекунды
+game:GetService("RunService").Stepped:Connect(function()
+    if getgenv().AF and not running then
+        task.wait(5)
+        startClock()
     end
 end)
-
 
 local function initClockUpdate()
 while true do
@@ -268,7 +270,7 @@ while true do
     FStats:Set({
         Title = "Статистика",
         Content = "Время: " .. Ftime .. "\n" ..
-                  "Дошёл до конца: " .. totalGoldBlock .. " раз\n" ..
+                  "Блоков золота: " .. totalGoldBlock .. "\n" ..
                   "Золота получено: " .. totalGoldGained .. "\n" ..
                   "Золота в час: " .. math.floor(GoldPerHour),
     })
@@ -279,7 +281,6 @@ while true do
 end
 end
 
--- ИСПРАВЛЕНИЕ 4: Эта строка была избыточна и удалена.
--- GoldPerHour = 0 
+GoldPerHour = 0
 
 task.spawn(initClockUpdate)
