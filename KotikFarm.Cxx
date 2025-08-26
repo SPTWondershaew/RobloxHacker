@@ -272,9 +272,19 @@ while true do
         Content = "Время: " .. Ftime .. "\n" ..
                   "Дошёл до конца: " .. totalGoldBlock .. " раз\n" ..
                   "Золота получено: " .. totalGoldGained .. "\n" ..
-                  "Золота в час: " .. math.floor(GoldPerHour),
+                  "Золота в час: " .. math.floor(GoldPerHour) .. "\n\n" ..,
+                  "Информация:\n",
+                  "Создатели: t.me/Im_DrHacker // t.me/Im_DrHackersha\n",
+                  "@kill666you_0 // @A_2013103 \n",
+                  "Дата создания: 26.08.2025",
     })
-
+    FStats:Set({
+        Title = "Информация",
+        Content =
+                  "Создатели: t.me/Im_DrHacker // t.me/Im_DrHackersha\n",
+                  "@kill666you_0 // @Adiwxy \n",
+                  "Дата создания: 26.08.2025",
+    })
     lastGoldValue = FinalGold
 
     task.wait(1)
