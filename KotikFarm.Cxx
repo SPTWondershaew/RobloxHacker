@@ -272,7 +272,8 @@ while true do
         Content = "Время: " .. Ftime .. "\n" ..
                   "Дошёл до конца: " .. totalGoldBlock .. " раз\n" ..
                   "Золота получено: " .. totalGoldGained .. "\n" ..
-                  "Золота в час: " .. math.floor(GoldPerHour),
+                  "Золота в час: " .. math.floor(GoldPerHour) .. "\n" ..
+                  "Золота в секунду: 6,2"
     })
 
     lastGoldValue = FinalGold
