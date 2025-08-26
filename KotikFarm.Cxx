@@ -148,9 +148,9 @@ local AutoFarmToggle = Global:CreateToggle({
                 end
                 newPart.Position = humanoidRootPart.Position - Vector3.new(0, 2, 0)
 
-                task.wait(2)
+                task.wait(2.0)
                 if iteration == 1 then
-                    task.wait(2.3)
+                    task.wait(2.0)
                 end
                 if iteration == 4 then
                 else
