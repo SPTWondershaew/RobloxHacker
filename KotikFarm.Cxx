@@ -269,7 +269,7 @@ while true do
     FStats:Set({
         Title = "Статистика",
         Content = "Время: " .. Ftime .. "\n" ..
-                  "Дошёл до конца: " .. totalGoldBlock .. " " "раз\n" ..
+                  "Дошёл до конца: " .. totalGoldBlock .. " раз\n" ..
                   "Золота получено: " .. totalGoldGained .. "\n" ..
                   "Золота в час: " .. math.floor(GoldPerHour),
     })
