@@ -1,6 +1,6 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
 
-local Window = OrionLib:MakeWindow({Name = "BendyHubX", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "ExteraMod", HidePremium = false, SaveConfig = true, ConfigFolder = "2025.2"})
 
 local MainTab = Window:MakeTab({
  Name = "Меню",
@@ -9,7 +9,7 @@ local MainTab = Window:MakeTab({
 })
 
 local Section = MainTab:AddSection({
- Name = "Creator Im_DrHacker (tg)"
+ Name = "👑Creator Im_DrHacker👑"
 })
 
 -- Переменные для управления Киллаурой
@@ -17,7 +17,7 @@ local killAllActive = false
 local killAllConnection = nil
 
 MainTab:AddDropdown({
- Name = "Kill all versions",
+ Name = "Киллаура",
  Default = "",
  Options = {"Убивать всех"}, -- Оставлена только опция "Kill all"
  Callback = function(Value)
@@ -74,4 +74,5 @@ MainTab:AddButton({
    end    
 })
 -- Все остальные вкладки и функционал удалены
+
 
