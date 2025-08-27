@@ -66,5 +66,12 @@ MainTab:AddDropdown({
   end
  end    
 })
-
+-- Кнопка "ESP" удалена
+MainTab:AddButton({
+ Name = "Подсветка игроков",
+ Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/fatesc/fates-esp/main/main.lua'))()
+   end    
+})
 -- Все остальные вкладки и функционал удалены
+
