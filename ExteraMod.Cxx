@@ -1,6 +1,6 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
 
-local Window = OrionLib:MakeWindow({Name = "ExteraMod", HidePremium = false, SaveConfig = true, ConfigFolder = "2025.2"})
+local Window = OrionLib:MakeWindow({Name = "BendyHubX", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 local MainTab = Window:MakeTab({
  Name = "Меню",
@@ -9,21 +9,21 @@ local MainTab = Window:MakeTab({
 })
 
 local Section = MainTab:AddSection({
- Name = "Функции"
+ Name = "Creator Im_DrHacker (tg)"
 })
 
 -- Переменные для управления Киллаурой
-local killAuraActive = false
-local killAuraConnection = nil
+local killAllActive = false
+local killAllConnection = nil
 
 MainTab:AddDropdown({
- Name = "Киллаура",
+ Name = "Kill all versions",
  Default = "",
- Options = {"Убивать всех"},
+ Options = {"Убивать всех"}, -- Оставлена только опция "Kill all"
  Callback = function(Value)
   if Value == "Убивать всех" then
-      if not killAuraActive then -- Активируем, если сейчас не активна
-          killAuraActive = true
+      if not killAllActive then -- Активируем, если сейчас не активна
+          killAllActive = true
           OrionLib:MakeNotification({
              Name = "ExteraMod",
              Content = "Киллаура активирована",
@@ -31,7 +31,7 @@ MainTab:AddDropdown({
              Time = 10
           })
 
-          killAuraConnection = game:GetService("RunService").RenderStepped:Connect(function()
+          killAllConnection = game:GetService("RunService").RenderStepped:Connect(function()
               local player = game:GetService("Players").LocalPlayer
               local playersList = game.Players:GetPlayers()
               for i = 2, #playersList do
@@ -51,14 +51,14 @@ MainTab:AddDropdown({
               end
           end)
       else -- Если уже активна и выбрана снова, деактивируем (поведение переключателя)
-          killAuraActive = false
-          if killAuraConnection then
-              killAuraConnection:Disconnect()
-              killAuraConnection = nil
+          killAllActive = false
+          if killAllConnection then
+              killAllConnection:Disconnect()
+              killAllConnection = nil
           end
           OrionLib:MakeNotification({
              Name = "ExteraMod",
-             Content = "Киллаура деактивирована",
+             Content = "Киллаура активирована",
              Image = "rbxassetid://1633620069",
              Time = 5
           })
@@ -67,22 +67,4 @@ MainTab:AddDropdown({
  end    
 })
 
-
-MainTab:AddButton({
- Name = "Подсветка игроков",
- Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/fatesc/fates-esp/main/main.lua'))()
-        OrionLib:MakeNotification({
-            Name = "ExteraMod",
-            Content = "Подсветка игроков активирована",
-            Image = "rbxassetid://1633620069",
-            Time = 5
-        })
-   end    
-})
-
-
-
-
-
-
+-- Все остальные вкладки и функционал удалены
