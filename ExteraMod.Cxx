@@ -1,6 +1,6 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
 
-local Window = OrionLib:MakeWindow({Name = "BendyHubX", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "ExteraMod", HidePremium = false, SaveConfig = true, ConfigFolder = "2025.2"})
 
 local MainTab = Window:MakeTab({
  Name = "Main",
@@ -9,13 +9,13 @@ local MainTab = Window:MakeTab({
 })
 
 local Section = MainTab:AddSection({
- Name = "And for pvp"
+ Name = "Функции"
 })
 
 MainTab:AddDropdown({
- Name = "Kill all versions",
+ Name = "Киллаура",
  Default = "",
- Options = {"Kill all", "Multi kill all", "Anti kill friends", "Multi anti kill friends"}, -- Оставлены все опции, но логика только для "Kill all"
+ Options = {"Убивать всех"}, -- Оставлены все опции, но логика только для "Kill all"
  Callback = function(Value)
   if Value == "Kill all" then
   local range = 1000
@@ -39,8 +39,8 @@ end)
 wait()
 
 OrionLib:MakeNotification({
- Name = "BendyHubX",
- Content = "This function kills everyone sword, but works in some modes",
+ Name = "ExteraMod",
+ Content = "Киллаура активирована",
  Image = "rbxassetid://1633620069",
  Time = 10
 })
@@ -50,22 +50,12 @@ OrionLib:MakeNotification({
 })
 
 
-local MiscTab = Window:MakeTab({ -- Переименовано в MiscTab
- Name = "Misc",
- Icon = "rbxassetid://4483345998",
- PremiumOnly = false
-})
-
-local EspSection = MiscTab:AddSection({ -- Переименовано в EspSection
- Name = "ESP"
-})
-
--- Кнопка "ESP" удалена
 MiscTab:AddButton({
- Name = "ESP v2",
+ Name = "Подсветка игроков",
  Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/fatesc/fates-esp/main/main.lua'))()
    end    
 })
 
 -- Все остальные вкладки и функционал удалены
+
