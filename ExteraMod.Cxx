@@ -18,7 +18,7 @@ MainTab:AddDropdown({
  Options = {"Убивать всех"}, -- Оставлены все опции, но логика только для "Kill all"
  Callback = function(Value)
   if Value == "Kill all" then
-  local range = 1000
+  local range = 4000
 local player = game:GetService("Players").LocalPlayer
 game:GetService("RunService").RenderStepped:Connect(function()
     local p = game.Players:GetPlayers()
@@ -58,5 +58,6 @@ MainTab:AddButton({
 })
 
 -- Все остальные вкладки и функционал удалены
+
 
 
