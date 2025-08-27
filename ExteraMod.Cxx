@@ -3,7 +3,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ion
 local Window = OrionLib:MakeWindow({Name = "ExteraMod", HidePremium = false, SaveConfig = true, ConfigFolder = "2025.2"})
 
 local MainTab = Window:MakeTab({
- Name = "Main",
+ Name = "Меню",
  Icon = "rbxassetid://4483345998",
  PremiumOnly = false
 })
@@ -50,7 +50,7 @@ OrionLib:MakeNotification({
 })
 
 
-MiscTab:AddButton({
+MainTab:AddButton({
  Name = "Подсветка игроков",
  Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/fatesc/fates-esp/main/main.lua'))()
@@ -58,4 +58,5 @@ MiscTab:AddButton({
 })
 
 -- Все остальные вкладки и функционал удалены
+
 
