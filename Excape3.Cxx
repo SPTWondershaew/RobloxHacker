@@ -24,7 +24,7 @@ NotificationBindable.OnInvoke = callback
 
 game.StarterGui:SetCore("SendNotification", {
     Title = "Построй корабль и найди сокровище",
-    Text = "Я Бизнес котик! Запускать?",
+    Text = "Я Бизнес котик! Запускать 🌟💴?",
     Icon = "",
     Duration = 10,
     Button1 = "Да",
