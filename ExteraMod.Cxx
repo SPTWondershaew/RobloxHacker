@@ -1,4 +1,4 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/SPTWondershaew/RobloxHacker/refs/heads/main/FreezeA')))()
 
 local Window = OrionLib:MakeWindow({Name = "ExteraMod", HidePremium = false, SaveConfig = true, ConfigFolder = "2025.2"})
 
@@ -74,5 +74,6 @@ MainTab:AddButton({
    end    
 })
 -- Все остальные вкладки и функционал удалены
+
 
 
