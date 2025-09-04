@@ -70,10 +70,11 @@ MainTab:AddDropdown({
 MainTab:AddButton({
  Name = "Подсветка игроков",
  Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/fatesc/fates-esp/main/main.lua'))()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/SPTWondershaew/RobloxHacker/refs/heads/main/FreezeV'))()
    end    
 })
 -- Все остальные вкладки и функционал удалены
+
 
 
 
