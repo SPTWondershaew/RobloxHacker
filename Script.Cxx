@@ -4,7 +4,7 @@ function isYhatlnkpmgrvhRZdjRzadgrdUsNZzkvvCKzrNnXUnudCPiHuMgeaRZTXzCejjtedhhCjw
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/SPTWondershaew/RobloxHacker/refs/heads/main/FreezeA')))()
 
-local Window = OrionLib:MakeWindow({Name = "Скрипты SPT_Wondershaew Creator Kill666you_0 ", HidePremium = false, SaveConfig = true, ConfigFolder = "Ext"})
+local Window = OrionLib:MakeWindow({Name = "Developer Im_DrHacker // Kill666you_0", HidePremium = false, SaveConfig = true, ConfigFolder = "Ext"})
 
 local MainTab = Window:MakeTab({
  Name = "Скрипты",
