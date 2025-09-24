@@ -1,0 +1,94 @@
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/jensonhirst/Orion/main/source"))()
+local api = loadstring(game:HttpGet("https://sdkapi-public.luarmor.net/library.lua"))()
+
+api.script_id = "cd22bffdfefc799f64ff2a0332d5adeb"
+
+if isfile("Trax_Keys/Trax_Spawner") then
+    script_key = readfile("Trax_Keys/Trax_Spawner")
+    if script_key and api.check_key(script_key).code == "KEY_VALID" then
+        api.load_script()
+        -- Assuming "_G.Если включена автоматическая загрузка" needs to be a valid Lua identifier,
+        -- it's been renamed here to a placeholder 'AutoLoadEnabled'.
+        -- If the original global variable exists, you might need to adjust this.
+        if not _G.AutoLoadEnabled then
+            OrionLib:MakeNotification({Name="Успех",Content="Загружено с сохранением ключа",Time=5})
+        end
+        return
+    end
+end
+
+local Window = OrionLib:MakeWindow({ -- 'окно' changed to 'Window' for consistency
+    Name = "Trax Spawner | Система ключей",
+    HidePremium = false, -- 'Скрыть премиум' changed to 'HidePremium'
+    SaveSettings = false, -- 'Сохранить настройки' changed to 'SaveSettings'
+    IntroEnabled = true, -- 'Вступление включено' changed to 'IntroEnabled'
+    IntroText = "Trax Spawner" -- 'Вступление' changed to 'IntroText'
+})
+
+local tab1 = Window:MakeTab({
+    Name = "Получить ключ",
+    Icon = "rbxassetid://104229924295526",
+    PremiumOnly = false -- 'Только для премиум-пользователей' changed to 'PremiumOnly'
+})
+
+local tab2 = Window:MakeTab({
+    Name = "Погасить",
+    Icon = "rbxassetid://99181785766598",
+    PremiumOnly = false
+})
+
+tab1:AddSection({Name = "Получить ключ"})
+tab2:AddSection({Name = "Ввести ключ"})
+
+local Label = tab1:AddParagraph("Получить ключ","Получите ключ в нашем Discord по ссылке ниже.\ndiscord.gg/fmqb7UGkyd")
+
+local Button1 = tab1:AddButton({
+    Name = "Копировать ссылку на ключ",
+    Callback = function()
+        if setclipboard then setclipboard("https://discord.gg/fmqb7UGkyd") end
+        OrionLib:MakeNotification({Name="Скопировано", Content="Ссылка для приглашения скопирована в буфер обмена", Time=4})
+    end
+})
+
+local key = "12345" -- Ключ "12345" установлен здесь
+local Input = tab2:AddTextbox({
+    Name = "Key",
+    Default = key, -- Значение по умолчанию установлено на "12345"
+    TextDisappear = false,
+    Callback = function(Text)
+        key = tostring(Text or ""):gsub("%s+","")
+    end
+})
+
+local Button2 = tab2:AddButton({
+    Name = "Activate",
+    Callback = function()
+        if #key ~= 32 then
+            OrionLib:MakeNotification({Name="Ошибка", Content="Неверный ключ", Time=3})
+            return
+        end
+
+        script_key = key
+
+        local status = api.check_key(script_key)
+
+        if status.code == "KEY_VALID" then
+            game:GetService("StarterGui"):SetCore("SendNotification", {
+                Title = "Успех", -- 'Заголовок' changed to 'Title'
+                Text = "Ключ действителен", -- 'Текст' changed to 'Text'
+                Duration = 5 -- 'Продолжительность' changed to 'Duration'
+            })
+            OrionLib:Destroy()
+            writefile("Trax_Keys/Trax_Spawner", script_key)
+            api.load_script()
+        elseif status.code == "KEY_INCORRECT" then -- 'если код состояния равен «KEY_INCORRECT», то' changed to 'elseif status.code == "KEY_INCORRECT" then'
+            OrionLib:MakeNotification({Name="Ошибка", Content="Неверный ключ/ключ с истекшим сроком действия", Time=5})
+        elseif status.code == "KEY_HWID_LOCKED" then
+            OrionLib:MakeNotification({Name="HWID заблокирован", Content="Сбросьте HWID на панели luarmor, это также может означать, что этот ключ уже используется", Time=5})
+        else -- 'ещё' changed to 'else'
+            OrionLib:MakeNotification({Name="error", Content=tostring(status.code or "Повторите попытку позже"), Time=5})
+        end
+    end
+})
+
+OrionLib:Init()
