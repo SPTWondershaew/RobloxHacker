@@ -1,8 +1,4 @@
 local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/jensonhirst/Orion/main/source"))()
-local api = loadstring(game:HttpGet("https://sdkapi-public.luarmor.net/library.lua"))()
-
-api.script_id = "cd22bffdfefc799f64ff2a0332d5adeb"
-
 local Window = OrionLib:MakeWindow({
     Name = "Trax Spawner | Система ключей",
     HidePremium = false,
