@@ -5,7 +5,7 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local HttpService = game:GetService("HttpService")
 
-local OrionLib = {
+local ShetrmoBiblio = { -- ИЗМЕНЕНО ЗДЕСЬ
  Elements = {},
  ThemeObjects = {},
  Connections = {},
@@ -33,7 +33,7 @@ local Success, Response = pcall(function()
 end)
 
 if not Success then
- warn("\nOrion Library - Failed to load Feather Icons. Error code: " .. Response .. "\n")
+ warn("\nShetrmoBiblio - Failed to load Feather Icons. Error code: " .. Response .. "\n") -- ИЗМЕНЕНО ЗДЕСЬ
 end 
 
 local function GetIcon(IconName)
@@ -53,7 +53,7 @@ else
  Orion.Parent = gethui() or game.CoreGui
 end
 
-function OrionLib:IsRunning()
+function ShetrmoBiblio:IsRunning() -- ИЗМЕНЕНО ЗДЕСЬ
  if gethui then
   return Orion.Parent == gethui()
  else
@@ -63,20 +63,20 @@ function OrionLib:IsRunning()
 end
 
 local function AddConnection(Signal, Function)
- if (not OrionLib:IsRunning()) then
+ if (not ShetrmoBiblio:IsRunning()) then -- ИЗМЕНЕНО ЗДЕСЬ
   return
  end
  local SignalConnect = Signal:Connect(Function)
- table.insert(OrionLib.Connections, SignalConnect)
+ table.insert(ShetrmoBiblio.Connections, SignalConnect) -- ИЗМЕНЕНО ЗДЕСЬ
  return SignalConnect
 end
 
 task.spawn(function()
- while (OrionLib:IsRunning()) do
+ while (ShetrmoBiblio:IsRunning()) do -- ИЗМЕНЕНО ЗДЕСЬ
   wait()
  end
 
- for _, Connection in next, OrionLib.Connections do
+ for _, Connection in next, ShetrmoBiblio.Connections do -- ИЗМЕНЕНО ЗДЕСЬ
   Connection:Disconnect()
  end
 end)
@@ -124,13 +124,13 @@ local function Create(Name, Properties, Children)
 end
 
 local function CreateElement(ElementName, ElementFunction)
- OrionLib.Elements[ElementName] = function(...)
+ ShetrmoBiblio.Elements[ElementName] = function(...) -- ИЗМЕНЕНО ЗДЕСЬ
   return ElementFunction(...)
  end
 end
 
 local function MakeElement(ElementName, ...)
- local NewElement = OrionLib.Elements[ElementName](...)
+ local NewElement = ShetrmoBiblio.Elements[ElementName](...) -- ИЗМЕНЕНО ЗДЕСЬ
  return NewElement
 end
 
@@ -173,18 +173,18 @@ local function ReturnProperty(Object)
 end
 
 local function AddThemeObject(Object, Type)
- if not OrionLib.ThemeObjects[Type] then
-  OrionLib.ThemeObjects[Type] = {}
+ if not ShetrmoBiblio.ThemeObjects[Type] then -- ИЗМЕНЕНО ЗДЕСЬ
+  ShetrmoBiblio.ThemeObjects[Type] = {} -- ИЗМЕНЕНО ЗДЕСЬ
  end    
- table.insert(OrionLib.ThemeObjects[Type], Object)
- Object[ReturnProperty(Object)] = OrionLib.Themes[OrionLib.SelectedTheme][Type]
+ table.insert(ShetrmoBiblio.ThemeObjects[Type], Object) -- ИЗМЕНЕНО ЗДЕСЬ
+ Object[ReturnProperty(Object)] = ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme][Type] -- ИЗМЕНЕНО ЗДЕСЬ
  return Object
 end    
 
 local function SetTheme()
- for Name, Type in pairs(OrionLib.ThemeObjects) do
+ for Name, Type in pairs(ShetrmoBiblio.ThemeObjects) do -- ИЗМЕНЕНО ЗДЕСЬ
   for _, Object in pairs(Type) do
-   Object[ReturnProperty(Object)] = OrionLib.Themes[OrionLib.SelectedTheme][Name]
+   Object[ReturnProperty(Object)] = ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme][Name] -- ИЗМЕНЕНО ЗДЕСЬ
   end    
  end    
 end
@@ -200,23 +200,23 @@ end
 local function LoadCfg(Config)
  local Data = HttpService:JSONDecode(Config)
  table.foreach(Data, function(a,b)
-  if OrionLib.Flags[a] then
+  if ShetrmoBiblio.Flags[a] then -- ИЗМЕНЕНО ЗДЕСЬ
    spawn(function() 
-    if OrionLib.Flags[a].Type == "Colorpicker" then
-     OrionLib.Flags[a]:Set(UnpackColor(b))
+    if ShetrmoBiblio.Flags[a].Type == "Colorpicker" then -- ИЗМЕНЕНО ЗДЕСЬ
+     ShetrmoBiblio.Flags[a]:Set(UnpackColor(b)) -- ИЗМЕНЕНО ЗДЕСЬ
     else
-     OrionLib.Flags[a]:Set(b)
+     ShetrmoBiblio.Flags[a]:Set(b) -- ИЗМЕНЕНО ЗДЕСЬ
     end    
    end)
   else
-   warn("Orion Library Config Loader - Could not find ", a ,b)
+   warn("ShetrmoBiblio Config Loader - Could not find ", a ,b) -- ИЗМЕНЕНО ЗДЕСЬ
   end
  end)
 end
 
 local function SaveCfg(Name)
  local Data = {}
- for i,v in pairs(OrionLib.Flags) do
+ for i,v in pairs(ShetrmoBiblio.Flags) do -- ИЗМЕНЕНО ЗДЕСЬ
   if v.Save then
    if v.Type == "Colorpicker" then
     Data[i] = PackColor(v.Value)
@@ -371,7 +371,7 @@ local NotificationHolder = SetProps(SetChildren(MakeElement("TFrame"), {
  Parent = Orion
 })
 
-function OrionLib:MakeNotification(NotificationConfig)
+function ShetrmoBiblio:MakeNotification(NotificationConfig) -- ИЗМЕНЕНО ЗДЕСЬ
  spawn(function()
   NotificationConfig.Name = NotificationConfig.Name or "Notification"
   NotificationConfig.Content = NotificationConfig.Content or "Test"
@@ -415,7 +415,7 @@ function OrionLib:MakeNotification(NotificationConfig)
    })
   })
 
-  TweenService:Create(NotificationFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {Position = UDim2.new(0, 0, 0, 0)}):Play()
+  TweenService:Create(NotificationFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {Position =UDim2.new(0, 0, 0, 0)}):Play()
 
   wait(NotificationConfig.Time - 0.88)
   TweenService:Create(NotificationFrame.Icon, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {ImageTransparency = 1}):Play()
@@ -432,12 +432,12 @@ function OrionLib:MakeNotification(NotificationConfig)
  end)
 end    
 
-function OrionLib:Init()
- if OrionLib.SaveCfg then 
+function ShetrmoBiblio:Init() -- ИЗМЕНЕНО ЗДЕСЬ
+ if ShetrmoBiblio.SaveCfg then -- ИЗМЕНЕНО ЗДЕСЬ
   pcall(function()
-   if isfile(OrionLib.Folder .. "/" .. game.GameId .. ".txt") then
-    LoadCfg(readfile(OrionLib.Folder .. "/" .. game.GameId .. ".txt"))
-    OrionLib:MakeNotification({
+   if isfile(ShetrmoBiblio.Folder .. "/" .. game.GameId .. ".txt") then -- ИЗМЕНЕНО ЗДЕСЬ
+    LoadCfg(readfile(ShetrmoBiblio.Folder .. "/" .. game.GameId .. ".txt")) -- ИЗМЕНЕНО ЗДЕСЬ
+    ShetrmoBiblio:MakeNotification({ -- ИЗМЕНЕНО ЗДЕСЬ
      Name = "Configuration",
      Content = "Auto-loaded configuration for the game " .. game.GameId .. ".",
      Time = 5
@@ -447,27 +447,27 @@ function OrionLib:Init()
  end 
 end 
 
-function OrionLib:MakeWindow(WindowConfig)
+function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
  local FirstTab = true
  local Minimized = false
  local Loaded = false
  local UIHidden = false
 
  WindowConfig = WindowConfig or {}
- WindowConfig.Name = WindowConfig.Name or "🌟Библиотека Штермокудекова🌟" -- ИЗМЕНЕНО ЗДЕСЬ
+ WindowConfig.Name = WindowConfig.Name or "🌟Библиотека Штермокудекова🌟"
  WindowConfig.ConfigFolder = WindowConfig.ConfigFolder or WindowConfig.Name
  WindowConfig.SaveConfig = WindowConfig.SaveConfig or false
  WindowConfig.HidePremium = WindowConfig.HidePremium or false
  if WindowConfig.IntroEnabled == nil then
   WindowConfig.IntroEnabled = true
  end
- WindowConfig.IntroText = WindowConfig.IntroText or "🌟Библиотека Штермокудекова🌟" -- ИЗМЕНЕНО ЗДЕСЬ
+ WindowConfig.IntroText = WindowConfig.IntroText or "🌟Библиотека Штермокудекова🌟"
  WindowConfig.CloseCallback = WindowConfig.CloseCallback or function() end
  WindowConfig.ShowIcon = WindowConfig.ShowIcon or false
  WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://8834748103"
  WindowConfig.IntroIcon = WindowConfig.IntroIcon or "rbxassetid://8834748103"
- OrionLib.Folder = WindowConfig.ConfigFolder
- OrionLib.SaveCfg = WindowConfig.SaveConfig
+ ShetrmoBiblio.Folder = WindowConfig.ConfigFolder -- ИЗМЕНЕНО ЗДЕСЬ
+ ShetrmoBiblio.SaveCfg = WindowConfig.SaveConfig -- ИЗМЕНЕНО ЗДЕСЬ
 
  if WindowConfig.SaveConfig then
   if not isfolder(WindowConfig.ConfigFolder) then
@@ -626,7 +626,7 @@ function OrionLib:MakeWindow(WindowConfig)
  AddConnection(CloseBtn.MouseButton1Up, function()
   MainWindow.Visible = false
   UIHidden = true
-  OrionLib:MakeNotification({
+  ShetrmoBiblio:MakeNotification({ -- ИЗМЕНЕНО ЗДЕСЬ
    Name = "Interface Hidden",
    Content = "Tap Left Control to reopen the interface",
    Time = 5
@@ -862,22 +862,22 @@ function OrionLib:MakeWindow(WindowConfig)
     }), "Second")
 
     AddConnection(Click.MouseEnter, function()
-     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 3)}):Play()
+     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
     end)
 
     AddConnection(Click.MouseLeave, function()
-     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Second}):Play()
+     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
     end)
 
     AddConnection(Click.MouseButton1Up, function()
-     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 3)}):Play()
+     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
      spawn(function()
       ButtonConfig.Callback()
      end)
     end)
 
     AddConnection(Click.MouseButton1Down, function()
-     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 6, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 6, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 6)}):Play()
+     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 6)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
     end)
 
     function Button:Set(ButtonText)
@@ -937,8 +937,8 @@ function OrionLib:MakeWindow(WindowConfig)
 
     function Toggle:Set(Value)
      Toggle.Value = Value
-     TweenService:Create(ToggleBox, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Toggle.Value and ToggleConfig.Color or OrionLib.Themes.Default.Divider}):Play()
-     TweenService:Create(ToggleBox.Stroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Color = Toggle.Value and ToggleConfig.Color or OrionLib.Themes.Default.Stroke}):Play()
+     TweenService:Create(ToggleBox, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Toggle.Value and ToggleConfig.Color or ShetrmoBiblio.Themes.Default.Divider}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(ToggleBox.Stroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Color = Toggle.Value and ToggleConfig.Color or ShetrmoBiblio.Themes.Default.Stroke}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
      TweenService:Create(ToggleBox.Ico, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = Toggle.Value and 0 or 1, Size = Toggle.Value and UDim2.new(0, 20, 0, 20) or UDim2.new(0, 8, 0, 8)}):Play()
      ToggleConfig.Callback(Toggle.Value)
     end    
@@ -946,25 +946,25 @@ function OrionLib:MakeWindow(WindowConfig)
     Toggle:Set(Toggle.Value)
 
     AddConnection(Click.MouseEnter, function()
-     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 3)}):Play()
+     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
     end)
 
     AddConnection(Click.MouseLeave, function()
-     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Second}):Play()
+     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
     end)
 
     AddConnection(Click.MouseButton1Up, function()
-     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 3)}):Play()
+     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
      SaveCfg(game.GameId)
      Toggle:Set(not Toggle.Value)
     end)
 
     AddConnection(Click.MouseButton1Down, function()
-     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 6, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 6, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 6)}):Play()
+     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 6)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
     end)
 
     if ToggleConfig.Flag then
-     OrionLib.Flags[ToggleConfig.Flag] = Toggle
+     ShetrmoBiblio.Flags[ToggleConfig.Flag] = Toggle -- ИЗМЕНЕНО ЗДЕСЬ
     end 
     return Toggle
    end  
@@ -1059,7 +1059,7 @@ function OrionLib:MakeWindow(WindowConfig)
 
     Slider:Set(Slider.Value)
     if SliderConfig.Flag then    
-     OrionLib.Flags[SliderConfig.Flag] = Slider
+     ShetrmoBiblio.Flags[SliderConfig.Flag] = Slider -- ИЗМЕНЕНО ЗДЕСЬ
     end
     return Slider
    end  
@@ -1120,8 +1120,7 @@ function OrionLib:MakeWindow(WindowConfig)
        Name = "Selected",
        TextXAlignment = Enum.TextXAlignment.Right
       }), "TextDark"),
-      AddThemeObject(SetProps(MakeElement("Frame"), {
-       Size = UDim2.new(1, 0, 0, 1),
+      AddThemeObject(SetProps(MakeElement("Frame"), {Size = UDim2.new(1, 0, 0, 1),
        Position = UDim2.new(0, 0, 1, -1),
        Name = "Line",
        Visible = false
@@ -1213,7 +1212,7 @@ function OrionLib:MakeWindow(WindowConfig)
     Dropdown:Refresh(Dropdown.Options, false)
     Dropdown:Set(Dropdown.Value)
     if DropdownConfig.Flag then    
-     OrionLib.Flags[DropdownConfig.Flag] = Dropdown
+     ShetrmoBiblio.Flags[DropdownConfig.Flag] = Dropdown -- ИЗМЕНЕНО ЗДЕСЬ
     end
     return Dropdown
    end
@@ -1310,19 +1309,19 @@ function OrionLib:MakeWindow(WindowConfig)
     end)
 
     AddConnection(Click.MouseEnter, function()
-     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 3)}):Play()
+     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
     end)
 
     AddConnection(Click.MouseLeave, function()
-     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Second}):Play()
+     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
     end)
 
     AddConnection(Click.MouseButton1Up, function()
-     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 3)}):Play()
+     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
     end)
 
     AddConnection(Click.MouseButton1Down, function()
-     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 6, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 6, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 6)}):Play()
+     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 6)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
     end)
 
     function Bind:Set(Key)
@@ -1334,7 +1333,7 @@ function OrionLib:MakeWindow(WindowConfig)
 
     Bind:Set(BindConfig.Default)
     if BindConfig.Flag then    
-     OrionLib.Flags[BindConfig.Flag] = Bind
+     ShetrmoBiblio.Flags[BindConfig.Flag] = Bind -- ИЗМЕНЕНО ЗДЕСЬ
     end
     return Bind
    end  
@@ -1400,20 +1399,20 @@ function OrionLib:MakeWindow(WindowConfig)
     TextboxActual.Text = TextboxConfig.Default
 
     AddConnection(Click.MouseEnter, function()
-     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 3)}):Play()
+     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
     end)
 
     AddConnection(Click.MouseLeave, function()
-     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Second}):Play()
+     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
     end)
 
     AddConnection(Click.MouseButton1Up, function()
-     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 3, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 3)}):Play()
+     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
      TextboxActual:CaptureFocus()
     end)
 
     AddConnection(Click.MouseButton1Down, function()
-     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(OrionLib.Themes[OrionLib.SelectedTheme].Second.R * 255 + 6, OrionLib.Themes[OrionLib.SelectedTheme].Second.G * 255 + 6, OrionLib.Themes[OrionLib.SelectedTheme].Second.B * 255 + 6)}):Play()
+     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 6)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
     end)
    end 
    function ElementFunction:AddColorpicker(ColorpickerConfig)
@@ -1493,7 +1492,7 @@ function OrionLib:MakeWindow(WindowConfig)
     }), "Main")
 
     local ColorpickerFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
-     Size = UDim2.new(1, 0, 0, 38),
+     Size = UDim2.new(1,0, 0, 38),
      Parent = ItemParent
     }), {
      SetProps(SetChildren(MakeElement("TFrame"), {
@@ -1597,7 +1596,7 @@ function OrionLib:MakeWindow(WindowConfig)
 
     Colorpicker:Set(Colorpicker.Value)
     if ColorpickerConfig.Flag then    
-     OrionLib.Flags[ColorpickerConfig.Flag] = Colorpicker
+     ShetrmoBiblio.Flags[ColorpickerConfig.Flag] = Colorpicker -- ИЗМЕНЕНО ЗДЕСЬ
     end
     return Colorpicker
    end  
@@ -1687,8 +1686,8 @@ function OrionLib:MakeWindow(WindowConfig)
  return TabFunction
 end   
 
-function OrionLib:Destroy()
+function ShetrmoBiblio:Destroy() -- ИЗМЕНЕНО ЗДЕСЬ
  Orion:Destroy()
 end
 
-return OrionLib
+return ShetrmoBiblio -- ИЗМЕНЕНО ЗДЕСЬ
