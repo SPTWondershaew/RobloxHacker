@@ -5,7 +5,7 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local HttpService = game:GetService("HttpService")
 
-local ShetrmoBiblio = { -- ИЗМЕНЕНО ЗДЕСЬ
+local ShtermoBiblio = {
  Elements = {},
  ThemeObjects = {},
  Connections = {},
@@ -33,8 +33,8 @@ local Success, Response = pcall(function()
 end)
 
 if not Success then
- warn("\nShetrmoBiblio - Failed to load Feather Icons. Error code: " .. Response .. "\n") -- ИЗМЕНЕНО ЗДЕСЬ
-end 
+ warn("\nOrion Library - Failed to load Feather Icons. Error code: " .. Response .. "\n")
+end
 
 local function GetIcon(IconName)
  if Icons[IconName] ~= nil then
@@ -42,7 +42,7 @@ local function GetIcon(IconName)
  else
   return nil
  end
-end   
+end
 
 local Orion = Instance.new("ScreenGui")
 Orion.Name = "Orion"
@@ -53,7 +53,7 @@ else
  Orion.Parent = gethui() or game.CoreGui
 end
 
-function ShetrmoBiblio:IsRunning() -- ИЗМЕНЕНО ЗДЕСЬ
+function ShtermoBiblio:IsRunning()
  if gethui then
   return Orion.Parent == gethui()
  else
@@ -63,20 +63,20 @@ function ShetrmoBiblio:IsRunning() -- ИЗМЕНЕНО ЗДЕСЬ
 end
 
 local function AddConnection(Signal, Function)
- if (not ShetrmoBiblio:IsRunning()) then -- ИЗМЕНЕНО ЗДЕСЬ
+ if (not ShtermoBiblio:IsRunning()) then
   return
  end
  local SignalConnect = Signal:Connect(Function)
- table.insert(ShetrmoBiblio.Connections, SignalConnect) -- ИЗМЕНЕНО ЗДЕСЬ
+ table.insert(ShtermoBiblio.Connections, SignalConnect)
  return SignalConnect
 end
 
 task.spawn(function()
- while (ShetrmoBiblio:IsRunning()) do -- ИЗМЕНЕНО ЗДЕСЬ
+ while (ShtermoBiblio:IsRunning()) do
   wait()
  end
 
- for _, Connection in next, ShetrmoBiblio.Connections do -- ИЗМЕНЕНО ЗДЕСЬ
+ for _, Connection in next, ShtermoBiblio.Connections do
   Connection:Disconnect()
  end
 end)
@@ -110,7 +110,7 @@ local function MakeDraggable(DragPoint, Main)
    end
   end)
  end)
-end    
+end
 
 local function Create(Name, Properties, Children)
  local Object = Instance.new(Name)
@@ -124,13 +124,13 @@ local function Create(Name, Properties, Children)
 end
 
 local function CreateElement(ElementName, ElementFunction)
- ShetrmoBiblio.Elements[ElementName] = function(...) -- ИЗМЕНЕНО ЗДЕСЬ
+ ShtermoBiblio.Elements[ElementName] = function(...)
   return ElementFunction(...)
  end
 end
 
 local function MakeElement(ElementName, ...)
- local NewElement = ShetrmoBiblio.Elements[ElementName](...) -- ИЗМЕНЕНО ЗДЕСЬ
+ local NewElement = ShtermoBiblio.Elements[ElementName](...)
  return NewElement
 end
 
@@ -157,41 +157,41 @@ end
 local function ReturnProperty(Object)
  if Object:IsA("Frame") or Object:IsA("TextButton") then
   return "BackgroundColor3"
- end 
+ end
  if Object:IsA("ScrollingFrame") then
   return "ScrollBarImageColor3"
- end 
+ end
  if Object:IsA("UIStroke") then
   return "Color"
- end 
+ end
  if Object:IsA("TextLabel") or Object:IsA("TextBox") then
   return "TextColor3"
- end   
+ end
  if Object:IsA("ImageLabel") or Object:IsA("ImageButton") then
   return "ImageColor3"
- end   
+ end
 end
 
 local function AddThemeObject(Object, Type)
- if not ShetrmoBiblio.ThemeObjects[Type] then -- ИЗМЕНЕНО ЗДЕСЬ
-  ShetrmoBiblio.ThemeObjects[Type] = {} -- ИЗМЕНЕНО ЗДЕСЬ
- end    
- table.insert(ShetrmoBiblio.ThemeObjects[Type], Object) -- ИЗМЕНЕНО ЗДЕСЬ
- Object[ReturnProperty(Object)] = ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme][Type] -- ИЗМЕНЕНО ЗДЕСЬ
+ if not ShtermoBiblio.ThemeObjects[Type] then
+  ShtermoBiblio.ThemeObjects[Type] = {}
+ end
+ table.insert(ShtermoBiblio.ThemeObjects[Type], Object)
+ Object[ReturnProperty(Object)] = ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme][Type]
  return Object
-end    
+end
 
 local function SetTheme()
- for Name, Type in pairs(ShetrmoBiblio.ThemeObjects) do -- ИЗМЕНЕНО ЗДЕСЬ
+ for Name, Type in pairs(ShtermoBiblio.ThemeObjects) do
   for _, Object in pairs(Type) do
-   Object[ReturnProperty(Object)] = ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme][Name] -- ИЗМЕНЕНО ЗДЕСЬ
-  end    
- end    
+   Object[ReturnProperty(Object)] = ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme][Name]
+  end
+ end
 end
 
 local function PackColor(Color)
  return {R = Color.R * 255, G = Color.G * 255, B = Color.B * 255}
-end    
+end
 
 local function UnpackColor(Color)
  return Color3.fromRGB(Color.R, Color.G, Color.B)
@@ -200,30 +200,30 @@ end
 local function LoadCfg(Config)
  local Data = HttpService:JSONDecode(Config)
  table.foreach(Data, function(a,b)
-  if ShetrmoBiblio.Flags[a] then -- ИЗМЕНЕНО ЗДЕСЬ
-   spawn(function() 
-    if ShetrmoBiblio.Flags[a].Type == "Colorpicker" then -- ИЗМЕНЕНО ЗДЕСЬ
-     ShetrmoBiblio.Flags[a]:Set(UnpackColor(b)) -- ИЗМЕНЕНО ЗДЕСЬ
+  if ShtermoBiblio.Flags[a] then
+   spawn(function()
+    if ShtermoBiblio.Flags[a].Type == "Colorpicker" then
+     ShtermoBiblio.Flags[a]:Set(UnpackColor(b))
     else
-     ShetrmoBiblio.Flags[a]:Set(b) -- ИЗМЕНЕНО ЗДЕСЬ
-    end    
+     ShtermoBiblio.Flags[a]:Set(b)
+    end
    end)
   else
-   warn("ShetrmoBiblio Config Loader - Could not find ", a ,b) -- ИЗМЕНЕНО ЗДЕСЬ
+   warn("Orion Library Config Loader - Could not find ", a ,b)
   end
  end)
 end
 
 local function SaveCfg(Name)
  local Data = {}
- for i,v in pairs(ShetrmoBiblio.Flags) do -- ИЗМЕНЕНО ЗДЕСЬ
+ for i,v in pairs(ShtermoBiblio.Flags) do
   if v.Save then
    if v.Type == "Colorpicker" then
     Data[i] = PackColor(v.Value)
    else
     Data[i] = v.Value
    end
-  end 
+  end
  end
 end
 
@@ -330,7 +330,7 @@ CreateElement("Image", function(ImageID)
 
  if GetIcon(ImageID) ~= nil then
   ImageNew.Image = GetIcon(ImageID)
- end 
+ end
 
  return ImageNew
 end)
@@ -371,7 +371,7 @@ local NotificationHolder = SetProps(SetChildren(MakeElement("TFrame"), {
  Parent = Orion
 })
 
-function ShetrmoBiblio:MakeNotification(NotificationConfig) -- ИЗМЕНЕНО ЗДЕСЬ
+function ShtermoBiblio:MakeNotification(NotificationConfig)
  spawn(function()
   NotificationConfig.Name = NotificationConfig.Name or "Notification"
   NotificationConfig.Content = NotificationConfig.Content or "Test"
@@ -385,7 +385,7 @@ function ShetrmoBiblio:MakeNotification(NotificationConfig) -- ИЗМЕНЕНО 
   })
 
   local NotificationFrame = SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(25, 25, 25), 0, 10), {
-   Parent = NotificationParent, 
+   Parent = NotificationParent,
    Size = UDim2.new(1, 0, 0, 0),
    Position = UDim2.new(1, -55, 0, 0),
    BackgroundTransparency = 0,
@@ -415,7 +415,7 @@ function ShetrmoBiblio:MakeNotification(NotificationConfig) -- ИЗМЕНЕНО 
    })
   })
 
-  TweenService:Create(NotificationFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {Position =UDim2.new(0, 0, 0, 0)}):Play()
+  TweenService:Create(NotificationFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {Position = UDim2.new(0, 0, 0, 0)}):Play()
 
   wait(NotificationConfig.Time - 0.88)
   TweenService:Create(NotificationFrame.Icon, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {ImageTransparency = 1}):Play()
@@ -430,49 +430,49 @@ function ShetrmoBiblio:MakeNotification(NotificationConfig) -- ИЗМЕНЕНО 
   wait(1.35)
   NotificationFrame:Destroy()
  end)
-end    
+end
 
-function ShetrmoBiblio:Init() -- ИЗМЕНЕНО ЗДЕСЬ
- if ShetrmoBiblio.SaveCfg then -- ИЗМЕНЕНО ЗДЕСЬ
+function ShtermoBiblio:Init()
+ if ShtermoBiblio.SaveCfg then
   pcall(function()
-   if isfile(ShetrmoBiblio.Folder .. "/" .. game.GameId .. ".txt") then -- ИЗМЕНЕНО ЗДЕСЬ
-    LoadCfg(readfile(ShetrmoBiblio.Folder .. "/" .. game.GameId .. ".txt")) -- ИЗМЕНЕНО ЗДЕСЬ
-    ShetrmoBiblio:MakeNotification({ -- ИЗМЕНЕНО ЗДЕСЬ
+   if isfile(ShtermoBiblio.Folder .. "/" .. game.GameId .. ".txt") then
+    LoadCfg(readfile(ShtermoBiblio.Folder .. "/" .. game.GameId .. ".txt"))
+    ShtermoBiblio:MakeNotification({
      Name = "Configuration",
      Content = "Auto-loaded configuration for the game " .. game.GameId .. ".",
      Time = 5
     })
    end
-  end)  
- end 
-end 
+  end)
+ end
+end
 
-function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
+function ShtermoBiblio:MakeWindow(WindowConfig)
  local FirstTab = true
  local Minimized = false
  local Loaded = false
  local UIHidden = false
 
  WindowConfig = WindowConfig or {}
- WindowConfig.Name = WindowConfig.Name or "🌟Библиотека Штермокудекова🌟"
+ WindowConfig.Name = WindowConfig.Name or "🌟Библиотека Штермокудекова🌟" -- ИЗМЕНЕНО ЗДЕСЬ
  WindowConfig.ConfigFolder = WindowConfig.ConfigFolder or WindowConfig.Name
  WindowConfig.SaveConfig = WindowConfig.SaveConfig or false
  WindowConfig.HidePremium = WindowConfig.HidePremium or false
  if WindowConfig.IntroEnabled == nil then
   WindowConfig.IntroEnabled = true
  end
- WindowConfig.IntroText = WindowConfig.IntroText or "🌟Библиотека Штермокудекова🌟"
+ WindowConfig.IntroText = WindowConfig.IntroText or "🌟Библиотека Штермокудекова🌟" -- ИЗМЕНЕНО ЗДЕСЬ
  WindowConfig.CloseCallback = WindowConfig.CloseCallback or function() end
  WindowConfig.ShowIcon = WindowConfig.ShowIcon or false
  WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://8834748103"
  WindowConfig.IntroIcon = WindowConfig.IntroIcon or "rbxassetid://8834748103"
- ShetrmoBiblio.Folder = WindowConfig.ConfigFolder -- ИЗМЕНЕНО ЗДЕСЬ
- ShetrmoBiblio.SaveCfg = WindowConfig.SaveConfig -- ИЗМЕНЕНО ЗДЕСЬ
+ ShtermoBiblio.Folder = WindowConfig.ConfigFolder
+ ShtermoBiblio.SaveCfg = WindowConfig.SaveConfig
 
  if WindowConfig.SaveConfig then
   if not isfolder(WindowConfig.ConfigFolder) then
    makefolder(WindowConfig.ConfigFolder)
-  end 
+  end
  end
 
  local TabHolder = AddThemeObject(SetChildren(SetProps(MakeElement("ScrollFrame", Color3.fromRGB(255, 255, 255), 4), {
@@ -519,15 +519,15 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
   AddThemeObject(SetProps(MakeElement("Frame"), {
    Size = UDim2.new(1, 0, 0, 10),
    Position = UDim2.new(0, 0, 0, 0)
-  }), "Second"), 
+  }), "Second"),
   AddThemeObject(SetProps(MakeElement("Frame"), {
    Size = UDim2.new(0, 10, 1, 0),
    Position = UDim2.new(1, -10, 0, 0)
-  }), "Second"), 
+  }), "Second"),
   AddThemeObject(SetProps(MakeElement("Frame"), {
    Size = UDim2.new(0, 1, 1, 0),
    Position = UDim2.new(1, -1, 0, 0)
-  }), "Stroke"), 
+  }), "Stroke"),
   TabHolder,
   SetChildren(SetProps(MakeElement("TFrame"), {
    Size = UDim2.new(1, 0, 0, 50),
@@ -535,7 +535,7 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
   }), {
    AddThemeObject(SetProps(MakeElement("Frame"), {
     Size = UDim2.new(1, 0, 0, 1)
-   }), "Stroke"), 
+   }), "Stroke"),
    AddThemeObject(SetChildren(SetProps(MakeElement("Frame"), {
     AnchorPoint = Vector2.new(0, 0.5),
     Size = UDim2.new(0, 32, 0, 32),
@@ -603,10 +603,10 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
     AddThemeObject(SetProps(MakeElement("Frame"), {
      Size = UDim2.new(0, 1, 1, 0),
      Position = UDim2.new(0.5, 0, 0, 0)
-    }), "Stroke"), 
+    }), "Stroke"),
     CloseBtn,
     MinimizeBtn
-   }), "Second"), 
+   }), "Second"),
   }),
   DragPoint,
   WindowStuff
@@ -619,14 +619,14 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
    Position = UDim2.new(0, 25, 0, 15)
   })
   WindowIcon.Parent = MainWindow.TopBar
- end 
+ end
 
  MakeDraggable(DragPoint, MainWindow)
 
  AddConnection(CloseBtn.MouseButton1Up, function()
   MainWindow.Visible = false
   UIHidden = true
-  ShetrmoBiblio:MakeNotification({ -- ИЗМЕНЕНО ЗДЕСЬ
+  ShtermoBiblio:MakeNotification({
    Name = "Interface Hidden",
    Content = "Tap Left Control to reopen the interface",
    Time = 5
@@ -655,9 +655,9 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
 
    TweenService:Create(MainWindow, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Size = UDim2.new(0, WindowName.TextBounds.X + 140, 0, 50)}):Play()
    wait(0.1)
-   WindowStuff.Visible = false 
+   WindowStuff.Visible = false
   end
-  Minimized = not Minimized    
+  Minimized = not Minimized
  end)
 
  local function LoadSequence()
@@ -691,11 +691,11 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
   MainWindow.Visible = true
   LoadSequenceLogo:Destroy()
   LoadSequenceText:Destroy()
- end 
+ end
 
  if WindowConfig.IntroEnabled then
   LoadSequence()
- end 
+ end
 
  local TabFunction = {}
  function TabFunction:MakeTab(TabConfig)
@@ -726,7 +726,7 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
 
   if GetIcon(TabConfig.Icon) ~= nil then
    TabFrame.Ico.Image = GetIcon(TabConfig.Icon)
-  end 
+  end
 
   local Container = AddThemeObject(SetChildren(SetProps(MakeElement("ScrollFrame", Color3.fromRGB(255, 255, 255), 5), {
    Size = UDim2.new(1, -150, 1, -50),
@@ -749,7 +749,7 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
    TabFrame.Title.TextTransparency = 0
    TabFrame.Title.Font = Enum.Font.GothamBlack
    Container.Visible = true
-  end    
+  end
 
   AddConnection(TabFrame.MouseButton1Click, function()
    for _, Tab in next, TabHolder:GetChildren() do
@@ -757,17 +757,17 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
      Tab.Title.Font = Enum.Font.GothamSemibold
      TweenService:Create(Tab.Ico, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 0.4}):Play()
      TweenService:Create(Tab.Title, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0.4}):Play()
-    end    
+    end
    end
    for _, ItemContainer in next, MainWindow:GetChildren() do
     if ItemContainer.Name == "ItemContainer" then
      ItemContainer.Visible = false
-    end    
-   end  
+    end
+   end
    TweenService:Create(TabFrame.Ico, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = 0}):Play()
    TweenService:Create(TabFrame.Title, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
    TabFrame.Title.Font = Enum.Font.GothamBlack
-   Container.Visible = true   
+   Container.Visible = true
   end)
 
   local function GetElements(ItemParent)
@@ -830,7 +830,7 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
      ParagraphFrame.Content.Text = ToChange
     end
     return ParagraphFunction
-   end    
+   end
    function ElementFunction:AddButton(ButtonConfig)
     ButtonConfig = ButtonConfig or {}
     ButtonConfig.Name = ButtonConfig.Name or "Button"
@@ -862,30 +862,30 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
     }), "Second")
 
     AddConnection(Click.MouseEnter, function()
-     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.R * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.G * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play()
     end)
 
     AddConnection(Click.MouseLeave, function()
-     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second}):Play()
     end)
 
     AddConnection(Click.MouseButton1Up, function()
-     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.R * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.G * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play()
      spawn(function()
       ButtonConfig.Callback()
      end)
     end)
 
     AddConnection(Click.MouseButton1Down, function()
-     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 6)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(ButtonFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.R * 255 + 6, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.G * 255 + 6, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.B * 255 + 6)}):Play()
     end)
 
     function Button:Set(ButtonText)
      ButtonFrame.Content.Text = ButtonText
-    end 
+    end
 
     return Button
-   end    
+   end
    function ElementFunction:AddToggle(ToggleConfig)
     ToggleConfig = ToggleConfig or {}
     ToggleConfig.Name = ToggleConfig.Name or "Toggle"
@@ -937,37 +937,37 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
 
     function Toggle:Set(Value)
      Toggle.Value = Value
-     TweenService:Create(ToggleBox, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Toggle.Value and ToggleConfig.Color or ShetrmoBiblio.Themes.Default.Divider}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
-     TweenService:Create(ToggleBox.Stroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Color = Toggle.Value and ToggleConfig.Color or ShetrmoBiblio.Themes.Default.Stroke}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(ToggleBox, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Toggle.Value and ToggleConfig.Color or ShtermoBiblio.Themes.Default.Divider}):Play()
+     TweenService:Create(ToggleBox.Stroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Color = Toggle.Value and ToggleConfig.Color or ShtermoBiblio.Themes.Default.Stroke}):Play()
      TweenService:Create(ToggleBox.Ico, TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {ImageTransparency = Toggle.Value and 0 or 1, Size = Toggle.Value and UDim2.new(0, 20, 0, 20) or UDim2.new(0, 8, 0, 8)}):Play()
      ToggleConfig.Callback(Toggle.Value)
-    end    
+    end
 
     Toggle:Set(Toggle.Value)
 
     AddConnection(Click.MouseEnter, function()
-     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.R * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.G * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play()
     end)
 
     AddConnection(Click.MouseLeave, function()
-     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second}):Play()
     end)
 
     AddConnection(Click.MouseButton1Up, function()
-     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.R * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.G * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play()
      SaveCfg(game.GameId)
      Toggle:Set(not Toggle.Value)
     end)
 
     AddConnection(Click.MouseButton1Down, function()
-     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 6)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(ToggleFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.R * 255 + 6, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.G * 255 + 6, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.B * 255 + 6)}):Play()
     end)
 
     if ToggleConfig.Flag then
-     ShetrmoBiblio.Flags[ToggleConfig.Flag] = Toggle -- ИЗМЕНЕНО ЗДЕСЬ
-    end 
+     ShtermoBiblio.Flags[ToggleConfig.Flag] = Toggle
+    end
     return Toggle
-   end  
+   end
    function ElementFunction:AddSlider(SliderConfig)
     SliderConfig = SliderConfig or {}
     SliderConfig.Name = SliderConfig.Name or "Slider"
@@ -1031,20 +1031,20 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
     }), "Second")
 
     SliderBar.InputBegan:Connect(function(Input)
-     if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then 
-      Dragging = true 
-     end 
+     if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+      Dragging = true
+     end
     end)
-    SliderBar.InputEnded:Connect(function(Input) 
-     if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then 
-      Dragging = false 
-     end 
+    SliderBar.InputEnded:Connect(function(Input)
+     if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+      Dragging = false
+     end
     end)
 
     UserInputService.InputChanged:Connect(function(Input)
-     if Dragging then 
+     if Dragging then
       local SizeScale = math.clamp((Mouse.X - SliderBar.AbsolutePosition.X) / SliderBar.AbsoluteSize.X, 0, 1)
-      Slider:Set(SliderConfig.Min + ((SliderConfig.Max - SliderConfig.Min) * SizeScale)) 
+      Slider:Set(SliderConfig.Min + ((SliderConfig.Max - SliderConfig.Min) * SizeScale))
       SaveCfg(game.GameId)
      end
     end)
@@ -1055,14 +1055,14 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
      SliderBar.Value.Text = tostring(self.Value) .. " " .. SliderConfig.ValueName
      SliderDrag.Value.Text = tostring(self.Value) .. " " .. SliderConfig.ValueName
      SliderConfig.Callback(self.Value)
-    end      
+    end
 
     Slider:Set(Slider.Value)
-    if SliderConfig.Flag then    
-     ShetrmoBiblio.Flags[SliderConfig.Flag] = Slider -- ИЗМЕНЕНО ЗДЕСЬ
+    if SliderConfig.Flag then
+     ShtermoBiblio.Flags[SliderConfig.Flag] = Slider
     end
     return Slider
-   end  
+   end
    function ElementFunction:AddDropdown(DropdownConfig)
     DropdownConfig = DropdownConfig or {}
     DropdownConfig.Name = DropdownConfig.Name or "Dropdown"
@@ -1120,11 +1120,12 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
        Name = "Selected",
        TextXAlignment = Enum.TextXAlignment.Right
       }), "TextDark"),
-      AddThemeObject(SetProps(MakeElement("Frame"), {Size = UDim2.new(1, 0, 0, 1),
+      AddThemeObject(SetProps(MakeElement("Frame"), {
+       Size = UDim2.new(1, 0, 0, 1),
        Position = UDim2.new(0, 0, 1, -1),
        Name = "Line",
        Visible = false
-      }), "Stroke"), 
+      }), "Stroke"),
       Click
      }), {
       Size = UDim2.new(1, 0, 0, 38),
@@ -1137,7 +1138,7 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
 
     AddConnection(DropdownList:GetPropertyChangedSignal("AbsoluteContentSize"), function()
      DropdownContainer.CanvasSize = UDim2.new(0, 0, 0, DropdownList.AbsoluteContentSize.Y)
-    end)  
+    end)
 
     local function AddOptions(Options)
      for _, Option in pairs(Options) do
@@ -1161,19 +1162,19 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
 
       Dropdown.Buttons[Option] = OptionBtn
      end
-    end 
+    end
 
     function Dropdown:Refresh(Options, Delete)
      if Delete then
       for _,v in pairs(Dropdown.Buttons) do
        v:Destroy()
-      end    
+      end
       table.clear(Dropdown.Options)
       table.clear(Dropdown.Buttons)
      end
      Dropdown.Options = Options
      AddOptions(Dropdown.Options)
-    end  
+    end
 
     function Dropdown:Set(Value)
      if not table.find(Dropdown.Options, Value) then
@@ -1182,7 +1183,7 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
       for _, v in pairs(Dropdown.Buttons) do
        TweenService:Create(v,TweenInfo.new(.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
        TweenService:Create(v.Title,TweenInfo.new(.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{TextTransparency = 0.4}):Play()
-      end 
+      end
       return
      end
 
@@ -1192,7 +1193,7 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
      for _, v in pairs(Dropdown.Buttons) do
       TweenService:Create(v,TweenInfo.new(.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
       TweenService:Create(v.Title,TweenInfo.new(.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{TextTransparency = 0.4}):Play()
-     end 
+     end
      TweenService:Create(Dropdown.Buttons[Value],TweenInfo.new(.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
      TweenService:Create(Dropdown.Buttons[Value].Title,TweenInfo.new(.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
      return DropdownConfig.Callback(Dropdown.Value)
@@ -1211,8 +1212,8 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
 
     Dropdown:Refresh(Dropdown.Options, false)
     Dropdown:Set(Dropdown.Value)
-    if DropdownConfig.Flag then    
-     ShetrmoBiblio.Flags[DropdownConfig.Flag] = Dropdown -- ИЗМЕНЕНО ЗДЕСЬ
+    if DropdownConfig.Flag then
+     ShtermoBiblio.Flags[DropdownConfig.Flag] = Dropdown
     end
     return Dropdown
    end
@@ -1309,19 +1310,19 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
     end)
 
     AddConnection(Click.MouseEnter, function()
-     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.R * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.G * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play()
     end)
 
     AddConnection(Click.MouseLeave, function()
-     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second}):Play()
     end)
 
     AddConnection(Click.MouseButton1Up, function()
-     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.R * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.G * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play()
     end)
 
     AddConnection(Click.MouseButton1Down, function()
-     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 6)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(BindFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.R * 255 + 6, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.G * 255 + 6, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.B * 255 + 6)}):Play()
     end)
 
     function Bind:Set(Key)
@@ -1332,11 +1333,11 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
     end
 
     Bind:Set(BindConfig.Default)
-    if BindConfig.Flag then    
-     ShetrmoBiblio.Flags[BindConfig.Flag] = Bind -- ИЗМЕНЕНО ЗДЕСЬ
+    if BindConfig.Flag then
+     ShtermoBiblio.Flags[BindConfig.Flag] = Bind
     end
     return Bind
-   end  
+   end
    function ElementFunction:AddTextbox(TextboxConfig)
     TextboxConfig = TextboxConfig or {}
     TextboxConfig.Name = TextboxConfig.Name or "Textbox"
@@ -1393,28 +1394,28 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
      TextboxConfig.Callback(TextboxActual.Text)
      if TextboxConfig.TextDisappear then
       TextboxActual.Text = ""
-     end 
+     end
     end)
 
     TextboxActual.Text = TextboxConfig.Default
 
     AddConnection(Click.MouseEnter, function()
-     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.R * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.G * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play()
     end)
 
     AddConnection(Click.MouseLeave, function()
-     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second}):Play()
     end)
 
     AddConnection(Click.MouseButton1Up, function()
-     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 3, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.R * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.G * 255 + 3, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.B * 255 + 3)}):Play()
      TextboxActual:CaptureFocus()
     end)
 
     AddConnection(Click.MouseButton1Down, function()
-     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.R * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.G * 255 + 6, ShetrmoBiblio.Themes[ShetrmoBiblio.SelectedTheme].Second.B * 255 + 6)}):Play() -- ИЗМЕНЕНО ЗДЕСЬ
+     TweenService:Create(TextboxFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.R * 255 + 6, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.G * 255 + 6, ShtermoBiblio.Themes[ShtermoBiblio.SelectedTheme].Second.B * 255 + 6)}):Play()
     end)
-   end 
+   end
    function ElementFunction:AddColorpicker(ColorpickerConfig)
     ColorpickerConfig = ColorpickerConfig or {}
     ColorpickerConfig.Name = ColorpickerConfig.Name or "Colorpicker"
@@ -1492,7 +1493,7 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
     }), "Main")
 
     local ColorpickerFrame = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 5), {
-     Size = UDim2.new(1,0, 0, 38),
+     Size = UDim2.new(1, 0, 0, 38),
      Parent = ItemParent
     }), {
      SetProps(SetChildren(MakeElement("TFrame"), {
@@ -1509,7 +1510,7 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
        Position = UDim2.new(0, 0, 1, -1),
        Name = "Line",
        Visible = false
-      }), "Stroke"), 
+      }), "Stroke"),
      }), {
       Size = UDim2.new(1, 0, 0, 38),
       ClipsDescendants = true,
@@ -1595,13 +1596,13 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
     end
 
     Colorpicker:Set(Colorpicker.Value)
-    if ColorpickerConfig.Flag then    
-     ShetrmoBiblio.Flags[ColorpickerConfig.Flag] = Colorpicker -- ИЗМЕНЕНО ЗДЕСЬ
+    if ColorpickerConfig.Flag then
+     ShtermoBiblio.Flags[ColorpickerConfig.Flag] = Colorpicker
     end
     return Colorpicker
-   end  
-   return ElementFunction   
-  end 
+   end
+   return ElementFunction
+  end
 
   local ElementFunction = {}
 
@@ -1634,19 +1635,19 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
 
    local SectionFunction = {}
    for i, v in next, GetElements(SectionFrame.Holder) do
-    SectionFunction[i] = v 
+    SectionFunction[i] = v
    end
    return SectionFunction
-  end 
+  end
 
   for i, v in next, GetElements(Container) do
-   ElementFunction[i] = v 
+   ElementFunction[i] = v
   end
 
   if TabConfig.PremiumOnly then
    for i, v in next, ElementFunction do
     ElementFunction[i] = function() end
-   end    
+   end
    Container:FindFirstChild("UIListLayout"):Destroy()
    Container:FindFirstChild("UIPadding"):Destroy()
    SetChildren(SetProps(MakeElement("TFrame"), {
@@ -1680,14 +1681,14 @@ function ShetrmoBiblio:MakeWindow(WindowConfig) -- ИЗМЕНЕНО ЗДЕСЬ
     }), "Text")
    })
   end
-  return ElementFunction   
- end  
- 
- return TabFunction
-end   
+  return ElementFunction
+ end
 
-function ShetrmoBiblio:Destroy() -- ИЗМЕНЕНО ЗДЕСЬ
+ return TabFunction
+end
+
+function ShtermoBiblio:Destroy()
  Orion:Destroy()
 end
 
-return ShetrmoBiblio -- ИЗМЕНЕНО ЗДЕСЬ
+return ShtermoBiblio
