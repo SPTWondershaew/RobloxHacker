@@ -1,140 +1,181 @@
-local Gui = Instance.new("ScreenGui")
-local BackGround = Instance.new("Frame")
-local PlayerTextBox = Instance.new("TextBox")
-local ExitGuiButton = Instance.new("TextButton")
-local TeleportButton = Instance.new("ImageButton")
-local FastTeleportButton = Instance.new("TextButton")
-
-
-Gui.Name = "Gui"
-Gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-Gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-Gui.ResetOnSpawn = false
-
-BackGround.Name = "BackGround"
-BackGround.Parent = Gui
-BackGround.Active = true
-BackGround.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-BackGround.BorderColor3 = Color3.fromRGB(27, 42, 53)
-BackGround.BorderSizePixel = 0
-BackGround.Draggable = true
-BackGround.Position = UDim2.new(0.414194375, -35, 0.447971016, -5)
-BackGround.Size = UDim2.new(0, 220, 0, 70)
-BackGround.Active = true
-BackGround.Draggable = true
-
-PlayerTextBox.Name = "PlayerTextBox"
-PlayerTextBox.Parent = BackGround
-PlayerTextBox.BackgroundColor3 = Color3.fromRGB(93, 93, 93)
-PlayerTextBox.BorderColor3 = Color3.fromRGB(38, 38, 38)
-PlayerTextBox.BorderSizePixel = 3
-PlayerTextBox.Position = UDim2.new(0.0606889203, 0, 0.156255662, 0)
-PlayerTextBox.Size = UDim2.new(0, 189, 0, 47)
-PlayerTextBox.ClearTextOnFocus = false
-PlayerTextBox.Font = Enum.Font.JosefinSans
-PlayerTextBox.PlaceholderText = "Player Name"
-PlayerTextBox.Text = ""
-PlayerTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-PlayerTextBox.TextScaled = true
-PlayerTextBox.TextSize = 14.000
-PlayerTextBox.TextWrapped = true
-
-ExitGuiButton.Name = "ExitGuiButton"
-ExitGuiButton.Parent = BackGround
-ExitGuiButton.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
-ExitGuiButton.BorderColor3 = Color3.fromRGB(50, 50, 50)
-ExitGuiButton.BorderSizePixel = 3
-ExitGuiButton.Position = UDim2.new(0.853980601, 0, -0.304931432, 0)
-ExitGuiButton.Size = UDim2.new(0, 21, 0, 21)
-ExitGuiButton.Font = Enum.Font.JosefinSans
-ExitGuiButton.Text = "X"
-ExitGuiButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-ExitGuiButton.TextSize = 14.000
-ExitGuiButton.TextWrapped = true
-
-TeleportButton.Name = "TeleportButton"
-TeleportButton.Parent = BackGround
-TeleportButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TeleportButton.BorderColor3 = Color3.fromRGB(50, 50, 50)
-TeleportButton.BorderSizePixel = 3
-TeleportButton.Position = UDim2.new(0.763071358, 0, -0.304931432, 0)
-TeleportButton.Size = UDim2.new(0, 20, 0, 20)
-TeleportButton.Image = "http://www.roblox.com/asset/?id=7676225854"
-
-FastTeleportButton.Name = "FastTeleportButton"
-FastTeleportButton.Parent = BackGround
-FastTeleportButton.BackgroundColor3 = Color3.fromRGB(255, 64, 67)
-FastTeleportButton.BorderColor3 = Color3.fromRGB(50, 50, 50)
-FastTeleportButton.BorderSizePixel = 3
-FastTeleportButton.Position = UDim2.new(0.672162294, 0, -0.304931402, 0)
-FastTeleportButton.Size = UDim2.new(0, 20, 0, 20)
-FastTeleportButton.Font = Enum.Font.SourceSans
-FastTeleportButton.Text = ""
-FastTeleportButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-FastTeleportButton.TextSize = 14.000
-
---Hide Menu
-local UIS = game:GetService("UserInputService")
-local guiMode = true
-local fastTpMode = false
-local fastWhileMode = false
-
-UIS.InputBegan:Connect(function (UserInput)
- if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Insert then
-  if guiMode == true then
-   Gui.Enabled = false
-   guiMode = false
-  else
-   Gui.Enabled = true
-   guiMode = true
-  end
- end
-end)
-
---Teleport
-PlayerTextBox.FocusLost:Connect(function(enter)
- if enter then
-  local boxText = PlayerTextBox.Text
-  local plr1 = game.Players.LocalPlayer.Character
-  local plr2 = game:GetService("Players"):FindFirstChild(boxText)
-
-  plr1.HumanoidRootPart.CFrame = plr2.Character.HumanoidRootPart.CFrame
- end
-end)
-
---Exit Button
-ExitGuiButton.MouseButton1Click:Connect(function()
- Gui:Destroy()
-end)
-
---Button Teleport
-TeleportButton.MouseButton1Click:Connect(function()
- local playerText = PlayerTextBox.Text
- local p1 = game.Players.LocalPlayer.Character
- local p2 = game:GetService("Players"):FindFirstChild(playerText)
-
- p1.HumanoidRootPart.CFrame = p2.Character.HumanoidRootPart.CFrame
-end)--Fast Teleport
-FastTeleportButton.MouseButton1Click:Connect(function()
- if fastTpMode == true then
-  FastTeleportButton.BackgroundColor3 = Color3.fromRGB(255, 64, 67)
-  fastTpMode = false
-  if fastTpMode == false then
-   fastWhileMode = false
-  end
- else
-  FastTeleportButton.BackgroundColor3 = Color3.fromRGB(67, 255, 67)
-  fastTpMode = true
-  if fastTpMode == true then
-   fastWhileMode = true
-   while fastWhileMode == true do
-    wait()
-    local plText = PlayerTextBox.Text
-    local pl1 = game.Players.LocalPlayer.Character
-    local pl2 = game:GetService("Players"):FindFirstChild(plText)
-
-    pl1.HumanoidRootPart.CFrame = pl2.Character.HumanoidRootPart.CFrame
-   end
-  end
- end
-end)
+--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+local localPlayer = game.Players.LocalPlayer.Character.HumanoidRootPart
+ 
+local function getDistance(position1, position2)
+    return (position1 - position2).Magnitude
+end
+ 
+for i, player in pairs(workspace.GameplayAssets.Items:GetDescendants()) do
+    if player.Name == "Root" and player:IsA("Part") then
+        if not player:FindFirstChild("EspBox") then
+            local esp = Instance.new("BoxHandleAdornment", player)
+            local BillboardGui = Instance.new("BillboardGui")
+            local TextLabel = Instance.new("TextLabel")
+            esp.Adornee = player
+            esp.ZIndex = 0
+            esp.Size = Vector3.new(1, 1, 1)
+            esp.Transparency = 0.65
+            esp.Color3 = Color3.fromRGB(255, 48, 48)
+            esp.AlwaysOnTop = true
+            esp.Name = "EspBox"
+ 
+            BillboardGui.Parent = player
+            BillboardGui.AlwaysOnTop = true
+            BillboardGui.LightInfluence = 1
+            BillboardGui.Size = UDim2.new(0, 40, 0, 40)
+            BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+            BillboardGui.Name = "BillobardEsp"
+ 
+            TextLabel.Parent = BillboardGui
+            TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+            TextLabel.BackgroundTransparency = 1
+            TextLabel.Size = UDim2.new(1, 0, 1, 0)
+            TextLabel.Text = player.Parent.Name
+            TextLabel.TextStrokeTransparency = 0
+            TextLabel.TextWrapped = false
+            TextLabel.TextColor3 = Color3.new(1, 0, 0)
+ 
+ 
+            spawn(function()
+                while player.Parent do 
+                    local distance = getDistance(localPlayer.Position, player.Position)
+                    TextLabel.Text = player.Parent.Name .. " (" .. math.floor(distance) .. ")"
+                    wait() 
+                end
+            end)
+        end
+    end
+end
+ 
+for i, player in pairs(workspace.GameplayParts.Doors.Normal.Paintable:GetDescendants()) do
+    if player.Name == "Core" and player:IsA("Part") then
+        if not player:FindFirstChild("EspBox") then
+            local esp = Instance.new("BoxHandleAdornment", player)
+            local BillboardGui = Instance.new("BillboardGui")
+            local TextLabel = Instance.new("TextLabel")
+            esp.Adornee = player
+            esp.ZIndex = 0
+            esp.Size = Vector3.new(1, 12, 12)
+            esp.Transparency = 0.65
+            esp.Color3 = player:FindFirstChild("SurfaceGui"):FindFirstChild("Color").TextColor3
+            esp.AlwaysOnTop = true
+            esp.Name = "EspBox"
+ 
+            BillboardGui.Parent = player
+            BillboardGui.AlwaysOnTop = true
+            BillboardGui.LightInfluence = 1
+            BillboardGui.Size = UDim2.new(0, 40, 0, 40)
+            BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+            BillboardGui.Name = "BillobardEsp"
+ 
+            TextLabel.Parent = BillboardGui
+            TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+            TextLabel.BackgroundTransparency = 1
+            TextLabel.Size = UDim2.new(1, 0, 1, 0)
+            TextLabel.Text = player.Parent.Name
+            TextLabel.TextStrokeTransparency = 0
+            TextLabel.TextWrapped = false
+            TextLabel.TextColor3 = player:FindFirstChild("SurfaceGui"):FindFirstChild("Color").TextColor3
+ 
+ 
+            spawn(function()
+                while player.Parent do
+                    local distance = getDistance(localPlayer.Position, player.Position)
+                    TextLabel.Text = player.Parent.Name .. " (" .. math.floor(distance) .. ")"
+                    wait() 
+                end
+            end)
+        end
+    end
+end
+ 
+for i, player in pairs(workspace.GameplayAssets.Monsters:GetChildren()) do
+    if not player:FindFirstChild("EspBox") then
+        local esp = Instance.new("BoxHandleAdornment", player)
+        local BillboardGui = Instance.new("BillboardGui")
+        local TextLabel = Instance.new("TextLabel")
+        esp.Adornee = player
+        esp.ZIndex = 0
+        esp.Size = Vector3.new(5, 15, 2)
+        esp.Transparency = 0.65
+        esp.Color3 = Color3.fromRGB(0, 0, 0)
+        esp.AlwaysOnTop = true
+        esp.Name = "EspBox"
+ 
+        BillboardGui.Parent = player
+        BillboardGui.AlwaysOnTop = true
+        BillboardGui.LightInfluence = 1
+        BillboardGui.Size = UDim2.new(0, 40, 0, 40)
+        BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+        BillboardGui.Name = "BillobardEsp"
+ 
+        TextLabel.Parent = BillboardGui
+        TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+        TextLabel.BackgroundTransparency = 1
+        TextLabel.Size = UDim2.new(1, 0, 1, 0)
+        TextLabel.Text = player.Name
+        TextLabel.TextStrokeTransparency = 0
+        TextLabel.TextWrapped = false
+        TextLabel.TextColor3 = Color3.new(1, 1, 1)
+ 
+        spawn(function()
+            while player.Parent do
+                local distance = getDistance(localPlayer.Position, player:FindFirstChild("HumanoidRootPart").Position)
+                TextLabel.Text = player.Name .. " (" .. math.floor(distance) .. ")"
+                wait() 
+            end
+        end)
+    end
+end
+for i, player in pairs(workspace.GameplayAssets.Items.Normal.PaintBucket:GetDescendants()) do
+    if player.Name == "Paint" then
+    if not player:FindFirstChild("EspBox") then
+        local esp = Instance.new("BoxHandleAdornment", player.Parent)
+        local BillboardGui = Instance.new("BillboardGui")
+        local TextLabel = Instance.new("TextLabel")
+        esp.Adornee = player.Parent
+        esp.ZIndex = 0
+        esp.Size = Vector3.new(1.5, 1.8, 1.5)
+        esp.Transparency = 0.65
+        esp.Color3 = player.Color
+        esp.AlwaysOnTop = true
+        esp.Name = "EspBox"
+ 
+        BillboardGui.Parent = player.Parent
+        BillboardGui.AlwaysOnTop = true
+        BillboardGui.LightInfluence = 1
+        BillboardGui.Size = UDim2.new(0, 40, 0, 40)
+        BillboardGui.StudsOffset = Vector3.new(0, 2, 0)
+        BillboardGui.Name = "BillobardEsp"
+ 
+        TextLabel.Parent = BillboardGui
+        TextLabel.BackgroundTransparency = 1
+        TextLabel.Size = UDim2.new(1, 0, 1, 0)
+        TextLabel.Text = player.Parent.Name
+        TextLabel.TextStrokeTransparency = 0
+        TextLabel.TextWrapped = false
+        TextLabel.TextColor3 = player.Color
+ 
+        spawn(function()
+            while player.Parent do
+                local distance = getDistance(localPlayer.Position, player.Position)
+                TextLabel.Text = player.Parent.Name .. " (" .. math.floor(distance) .. ")"
+                wait() 
+            end
+        end)
+    end
+end
+end
+ 
+function dellEsp()
+    for i, player in pairs(workspace:GetDescendants()) do
+        if player.Name == "BillobardEsp" and player:IsA("BillboardGui") then
+            player:Destroy()
+        end
+        if player.Name == "EspBox" then
+            player:Destroy()
+        end
+    end
+end
